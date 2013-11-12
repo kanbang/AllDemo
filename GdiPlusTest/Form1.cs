@@ -422,7 +422,7 @@ namespace GdiPlusTest
 
 				}
 			}
-			
+
 			e.SuppressKeyPress = true;
 		}
 
@@ -433,6 +433,79 @@ namespace GdiPlusTest
 
 		private void textBox2_KeyUp(object sender, KeyEventArgs e)
 		{
+
+		}
+
+		private void panel9_Paint(object sender, PaintEventArgs e)
+		{
+			List<List<PointF>> stirrupBarPoints = new List<List<PointF>>();
+
+			stirrupBarPoints.Add(new List<PointF> { new PointF(10, 10), new PointF(10, 20), new PointF(10, 30), new PointF(30, 30), new PointF(30, 20), new PointF(30, 10) });
+			stirrupBarPoints.Add(new List<PointF> { new PointF(10, 20), new PointF(10, 25), new PointF(35, 25), new PointF(40, 25), new PointF(40, 20), new PointF(35, 20) });
+
+			List<GraphicsPath> pathList = new List<GraphicsPath>();
+			GraphicsPath path = new GraphicsPath();
+			foreach (List<PointF> list in stirrupBarPoints) {
+				if (list.Count == 0) {
+					continue;
+				}
+				GraphicsPath childPath = GetRepresentPoints(list);
+				pathList.Add(childPath);
+				path.AddPath(childPath, false);
+			}
+			RectangleF rec = path.GetBounds();
+			Matrix mScale = new Matrix();
+
+			mScale.Translate(0 - rec.Left, 0 - rec.Top);//移到 0,0点
+			//path.Flatten(mScale, 1.0f);
+			foreach (GraphicsPath drawPath in pathList) {
+				drawPath.Flatten(mScale, 1.0F);
+			}
+			e.Graphics.Clear(panel9.BackColor);
+			e.Graphics.DrawPath(new Pen(Brushes.Red), path);
+		}
+		float scale = 0.1f;
+		private GraphicsPath GetRepresentPoints(List<PointF> list)
+		{
+			int offset = 5;
+			GraphicsPath path = new GraphicsPath();
+			//path.AddLines(list.ToArray());
+			path.AddPolygon(list.ToArray());
+			Matrix mScale = new Matrix();
+			mScale.Scale(scale, scale); //进行缩放，比例
+			path.Transform(mScale);
+			mScale = new Matrix();
+
+
+			RectangleF rec = path.GetBounds();
+			mScale.Translate((float)1, (float)1);
+			mScale.Translate((float)1, (float)1);
+			path.Flatten(mScale, 1.0F);
+
+			return path;
+		}
+
+		private void button5_Click(object sender, EventArgs e)
+		{
+			panel9.Refresh();
+			panel10.Refresh();
+			scale += 0.1f;
+		}
+
+		private void panel9_Paint_1(object sender, PaintEventArgs e)
+		{
+			List<List<PointF>> stirrupBarPoints = new List<List<PointF>>();
+
+			stirrupBarPoints.Add(new List<PointF> { new PointF(10, 10), new PointF(10, 20), new PointF(10, 30), new PointF(30, 30), new PointF(30, 20), new PointF(30, 10) });
+			stirrupBarPoints.Add(new List<PointF> { new PointF(10, 20), new PointF(10, 25), new PointF( 35,25), new PointF(40,25), new PointF(40, 20), new PointF(35, 20) });
+
+			GraphicsPath path = new GraphicsPath();
+			//path.AddLines(list.ToArray());
+			path.AddPolygon(stirrupBarPoints[0].ToArray());
+			path.AddPolygon(stirrupBarPoints[1].ToArray());
+
+			e.Graphics.Clear(panel9.BackColor);
+			e.Graphics.DrawPath(new Pen(Brushes.Red), path);
 
 		}
 	}

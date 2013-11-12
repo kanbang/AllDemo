@@ -28,10 +28,10 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.button1 = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
@@ -45,13 +45,7 @@
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.colorPicker1 = new GdiPlusTest.ColorPicker();
-			this.lineWidthPicker3 = new GdiPlusTest.LineWidthPicker();
 			this.button2 = new System.Windows.Forms.Button();
-			this.colorPicker2 = new GdiPlusTest.ColorPicker();
-			this.panelEx1 = new GdiPlusTest.PanelEx();
-			this.lineWidthPicker2 = new GdiPlusTest.LineWidthPicker();
-			this.lineWidthPicker1 = new GdiPlusTest.LineWidthPicker();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -59,12 +53,10 @@
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.panel5 = new System.Windows.Forms.Panel();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.panel3 = new GdiPlusTest.PanelExNoWheel();
-			this.panel4 = new GdiPlusTest.PanelEx();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.comboBox4 = new System.Windows.Forms.ComboBox();
-			this.radioButton1 = new System.Windows.Forms.RadioButton();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.dataGridView2 = new System.Windows.Forms.DataGridView();
 			this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,11 +65,23 @@
 			this.dataGridView = new System.Windows.Forms.DataGridView();
 			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.button5 = new System.Windows.Forms.Button();
+			this.panel10 = new System.Windows.Forms.Panel();
+			this.panel9 = new System.Windows.Forms.Panel();
 			this.panel8 = new System.Windows.Forms.Panel();
 			this.label2 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.colorPicker1 = new GdiPlusTest.ColorPicker();
+			this.lineWidthPicker3 = new GdiPlusTest.LineWidthPicker();
+			this.colorPicker2 = new GdiPlusTest.ColorPicker();
+			this.panelEx1 = new GdiPlusTest.PanelEx();
+			this.lineWidthPicker2 = new GdiPlusTest.LineWidthPicker();
+			this.lineWidthPicker1 = new GdiPlusTest.LineWidthPicker();
+			this.panel3 = new GdiPlusTest.PanelExNoWheel();
+			this.panel4 = new GdiPlusTest.PanelEx();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.comboBox4 = new System.Windows.Forms.ComboBox();
+			this.radioButton1 = new System.Windows.Forms.RadioButton();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -87,15 +91,16 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.tabPage3.SuspendLayout();
-			this.panel3.SuspendLayout();
-			this.panel4.SuspendLayout();
-			this.groupBox1.SuspendLayout();
 			this.tabPage4.SuspendLayout();
 			this.panel7.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
 			this.panel6.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+			this.tabPage5.SuspendLayout();
 			this.panel8.SuspendLayout();
+			this.panel3.SuspendLayout();
+			this.panel4.SuspendLayout();
+			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -207,6 +212,7 @@
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Controls.Add(this.tabPage3);
 			this.tabControl1.Controls.Add(this.tabPage4);
+			this.tabControl1.Controls.Add(this.tabPage5);
 			this.tabControl1.Location = new System.Drawing.Point(154, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
@@ -238,27 +244,6 @@
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "tabPage1";
 			// 
-			// colorPicker1
-			// 
-			this.colorPicker1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
-			this.colorPicker1.Color = System.Drawing.Color.WhiteSmoke;
-			this.colorPicker1.Location = new System.Drawing.Point(48, 443);
-			this.colorPicker1.Name = "colorPicker1";
-			this.colorPicker1.Size = new System.Drawing.Size(141, 26);
-			this.colorPicker1.TabIndex = 15;
-			this.colorPicker1.UseVisualStyleBackColor = false;
-			// 
-			// lineWidthPicker3
-			// 
-			this.lineWidthPicker3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.lineWidthPicker3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.lineWidthPicker3.FormattingEnabled = true;
-			this.lineWidthPicker3.Location = new System.Drawing.Point(211, 338);
-			this.lineWidthPicker3.Name = "lineWidthPicker3";
-			this.lineWidthPicker3.Size = new System.Drawing.Size(121, 22);
-			this.lineWidthPicker3.TabIndex = 21;
-			this.lineWidthPicker3.Width = 0.3D;
-			// 
 			// button2
 			// 
 			this.button2.BackColor = System.Drawing.Color.Transparent;
@@ -269,70 +254,6 @@
 			this.button2.Size = new System.Drawing.Size(147, 49);
 			this.button2.TabIndex = 11;
 			this.button2.UseVisualStyleBackColor = false;
-			// 
-			// colorPicker2
-			// 
-			this.colorPicker2.Color = System.Drawing.Color.White;
-			this.colorPicker2.Location = new System.Drawing.Point(22, 318);
-			this.colorPicker2.Name = "colorPicker2";
-			this.colorPicker2.Size = new System.Drawing.Size(150, 86);
-			this.colorPicker2.TabIndex = 20;
-			this.colorPicker2.Text = "colorPicker2";
-			this.colorPicker2.UseVisualStyleBackColor = true;
-			// 
-			// panelEx1
-			// 
-			this.panelEx1.Location = new System.Drawing.Point(184, 158);
-			this.panelEx1.Name = "panelEx1";
-			this.panelEx1.Size = new System.Drawing.Size(62, 34);
-			this.panelEx1.TabIndex = 8;
-			// 
-			// lineWidthPicker2
-			// 
-			this.lineWidthPicker2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.lineWidthPicker2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.lineWidthPicker2.FormattingEnabled = true;
-			this.lineWidthPicker2.Items.AddRange(new object[] {
-            0D,
-            5D,
-            9D,
-            13D,
-            15D,
-            18D,
-            20D,
-            25D,
-            30D,
-            35D,
-            40D,
-            50D,
-            53D,
-            60D,
-            70D,
-            80D,
-            90D,
-            100D,
-            106D,
-            120D,
-            140D,
-            158D,
-            200D,
-            211D});
-			this.lineWidthPicker2.Location = new System.Drawing.Point(6, 72);
-			this.lineWidthPicker2.Name = "lineWidthPicker2";
-			this.lineWidthPicker2.Size = new System.Drawing.Size(121, 22);
-			this.lineWidthPicker2.TabIndex = 18;
-			this.lineWidthPicker2.Width = 0.3D;
-			// 
-			// lineWidthPicker1
-			// 
-			this.lineWidthPicker1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.lineWidthPicker1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.lineWidthPicker1.FormattingEnabled = true;
-			this.lineWidthPicker1.Location = new System.Drawing.Point(37, 185);
-			this.lineWidthPicker1.Name = "lineWidthPicker1";
-			this.lineWidthPicker1.Size = new System.Drawing.Size(121, 22);
-			this.lineWidthPicker1.TabIndex = 17;
-			this.lineWidthPicker1.Width = 0.3D;
 			// 
 			// tabPage2
 			// 
@@ -410,6 +331,311 @@
 			this.checkBox1.Text = "checkBox1";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
+			// tabPage4
+			// 
+			this.tabPage4.Controls.Add(this.textBox4);
+			this.tabPage4.Controls.Add(this.textBox3);
+			this.tabPage4.Controls.Add(this.textBox2);
+			this.tabPage4.Controls.Add(this.panel7);
+			this.tabPage4.Controls.Add(this.panel6);
+			this.tabPage4.Location = new System.Drawing.Point(4, 22);
+			this.tabPage4.Name = "tabPage4";
+			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage4.Size = new System.Drawing.Size(784, 531);
+			this.tabPage4.TabIndex = 3;
+			this.tabPage4.Text = "tabPage4";
+			this.tabPage4.UseVisualStyleBackColor = true;
+			this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+			// 
+			// textBox4
+			// 
+			this.textBox4.Location = new System.Drawing.Point(29, 332);
+			this.textBox4.Name = "textBox4";
+			this.textBox4.Size = new System.Drawing.Size(100, 21);
+			this.textBox4.TabIndex = 4;
+			this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
+			// 
+			// textBox3
+			// 
+			this.textBox3.Location = new System.Drawing.Point(29, 273);
+			this.textBox3.Name = "textBox3";
+			this.textBox3.Size = new System.Drawing.Size(100, 21);
+			this.textBox3.TabIndex = 3;
+			this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
+			// 
+			// textBox2
+			// 
+			this.textBox2.Location = new System.Drawing.Point(29, 402);
+			this.textBox2.Name = "textBox2";
+			this.textBox2.Size = new System.Drawing.Size(100, 21);
+			this.textBox2.TabIndex = 2;
+			this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyUp);
+			// 
+			// panel7
+			// 
+			this.panel7.Controls.Add(this.dataGridView2);
+			this.panel7.Location = new System.Drawing.Point(267, 288);
+			this.panel7.Name = "panel7";
+			this.panel7.Size = new System.Drawing.Size(675, 240);
+			this.panel7.TabIndex = 1;
+			// 
+			// dataGridView2
+			// 
+			this.dataGridView2.AllowUserToAddRows = false;
+			this.dataGridView2.AllowUserToDeleteRows = false;
+			this.dataGridView2.AllowUserToResizeColumns = false;
+			this.dataGridView2.AllowUserToResizeRows = false;
+			this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
+			this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column3,
+            this.Column4});
+			this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGridView2.Enabled = false;
+			this.dataGridView2.Location = new System.Drawing.Point(0, 0);
+			this.dataGridView2.Name = "dataGridView2";
+			this.dataGridView2.RowHeadersVisible = false;
+			this.dataGridView2.RowTemplate.Height = 23;
+			this.dataGridView2.Size = new System.Drawing.Size(675, 240);
+			this.dataGridView2.TabIndex = 0;
+			// 
+			// Column3
+			// 
+			this.Column3.HeaderText = "Column3";
+			this.Column3.Name = "Column3";
+			// 
+			// Column4
+			// 
+			this.Column4.HeaderText = "Column4";
+			this.Column4.Name = "Column4";
+			// 
+			// panel6
+			// 
+			this.panel6.AutoScroll = true;
+			this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel6.Controls.Add(this.dataGridView);
+			this.panel6.Location = new System.Drawing.Point(8, 17);
+			this.panel6.Name = "panel6";
+			this.panel6.Size = new System.Drawing.Size(682, 160);
+			this.panel6.TabIndex = 0;
+			this.panel6.Click += new System.EventHandler(this.panel6_Click);
+			// 
+			// dataGridView
+			// 
+			this.dataGridView.AllowUserToAddRows = false;
+			this.dataGridView.AllowUserToDeleteRows = false;
+			this.dataGridView.AllowUserToResizeColumns = false;
+			this.dataGridView.AllowUserToResizeRows = false;
+			this.dataGridView.BackgroundColor = System.Drawing.Color.White;
+			this.dataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			this.dataGridView.ColumnHeadersHeight = 30;
+			this.dataGridView.ColumnHeadersVisible = false;
+			this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
+			this.dataGridView.EnableHeadersVisualStyles = false;
+			this.dataGridView.Location = new System.Drawing.Point(35, 7);
+			this.dataGridView.Name = "dataGridView";
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F);
+			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+			this.dataGridView.RowHeadersVisible = false;
+			this.dataGridView.RowTemplate.Height = 25;
+			this.dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+			this.dataGridView.Size = new System.Drawing.Size(570, 300);
+			this.dataGridView.TabIndex = 1;
+			this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
+			this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);
+			this.dataGridView.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellEnter);
+			this.dataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseClick);
+			this.dataGridView.Click += new System.EventHandler(this.dataGridView_Click);
+			// 
+			// Column1
+			// 
+			this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+			this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
+			this.Column1.FillWeight = 82.23351F;
+			this.Column1.HeaderText = "构造边缘转角墙";
+			this.Column1.MinimumWidth = 90;
+			this.Column1.Name = "Column1";
+			this.Column1.ReadOnly = true;
+			this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			// 
+			// Column2
+			// 
+			this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Column2.FillWeight = 97.76649F;
+			this.Column2.HeaderText = "";
+			this.Column2.MinimumWidth = 70;
+			this.Column2.Name = "Column2";
+			this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			// 
+			// tabPage5
+			// 
+			this.tabPage5.Controls.Add(this.button5);
+			this.tabPage5.Controls.Add(this.panel10);
+			this.tabPage5.Controls.Add(this.panel9);
+			this.tabPage5.Location = new System.Drawing.Point(4, 22);
+			this.tabPage5.Name = "tabPage5";
+			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage5.Size = new System.Drawing.Size(784, 531);
+			this.tabPage5.TabIndex = 4;
+			this.tabPage5.Text = "tabPage5";
+			this.tabPage5.UseVisualStyleBackColor = true;
+			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(102, 240);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(75, 23);
+			this.button5.TabIndex = 2;
+			this.button5.Text = "button5";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
+			// panel10
+			// 
+			this.panel10.Location = new System.Drawing.Point(359, 158);
+			this.panel10.Name = "panel10";
+			this.panel10.Size = new System.Drawing.Size(282, 275);
+			this.panel10.TabIndex = 1;
+			this.panel10.Paint += new System.Windows.Forms.PaintEventHandler(this.panel9_Paint);
+			// 
+			// panel9
+			// 
+			this.panel9.Location = new System.Drawing.Point(46, 27);
+			this.panel9.Name = "panel9";
+			this.panel9.Size = new System.Drawing.Size(200, 100);
+			this.panel9.TabIndex = 0;
+			this.panel9.Paint += new System.Windows.Forms.PaintEventHandler(this.panel9_Paint_1);
+			// 
+			// panel8
+			// 
+			this.panel8.Controls.Add(this.label2);
+			this.panel8.Location = new System.Drawing.Point(13, 80);
+			this.panel8.Name = "panel8";
+			this.panel8.Size = new System.Drawing.Size(97, 100);
+			this.panel8.TabIndex = 24;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(30, 23);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(41, 12);
+			this.label2.TabIndex = 0;
+			this.label2.Text = "label2";
+			// 
+			// colorPicker1
+			// 
+			this.colorPicker1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(112)))));
+			this.colorPicker1.Color = System.Drawing.Color.WhiteSmoke;
+			this.colorPicker1.Location = new System.Drawing.Point(48, 443);
+			this.colorPicker1.Name = "colorPicker1";
+			this.colorPicker1.Size = new System.Drawing.Size(141, 26);
+			this.colorPicker1.TabIndex = 15;
+			this.colorPicker1.UseVisualStyleBackColor = false;
+			// 
+			// lineWidthPicker3
+			// 
+			this.lineWidthPicker3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.lineWidthPicker3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.lineWidthPicker3.FormattingEnabled = true;
+			this.lineWidthPicker3.Location = new System.Drawing.Point(211, 338);
+			this.lineWidthPicker3.Name = "lineWidthPicker3";
+			this.lineWidthPicker3.Size = new System.Drawing.Size(121, 22);
+			this.lineWidthPicker3.TabIndex = 21;
+			this.lineWidthPicker3.Width = 0.3D;
+			// 
+			// colorPicker2
+			// 
+			this.colorPicker2.Color = System.Drawing.Color.White;
+			this.colorPicker2.Location = new System.Drawing.Point(22, 318);
+			this.colorPicker2.Name = "colorPicker2";
+			this.colorPicker2.Size = new System.Drawing.Size(150, 86);
+			this.colorPicker2.TabIndex = 20;
+			this.colorPicker2.Text = "colorPicker2";
+			this.colorPicker2.UseVisualStyleBackColor = true;
+			// 
+			// panelEx1
+			// 
+			this.panelEx1.Location = new System.Drawing.Point(184, 158);
+			this.panelEx1.Name = "panelEx1";
+			this.panelEx1.Size = new System.Drawing.Size(62, 34);
+			this.panelEx1.TabIndex = 8;
+			// 
+			// lineWidthPicker2
+			// 
+			this.lineWidthPicker2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.lineWidthPicker2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.lineWidthPicker2.FormattingEnabled = true;
+			this.lineWidthPicker2.Items.AddRange(new object[] {
+            0D,
+            5D,
+            9D,
+            13D,
+            15D,
+            18D,
+            20D,
+            25D,
+            30D,
+            35D,
+            40D,
+            50D,
+            53D,
+            60D,
+            70D,
+            80D,
+            90D,
+            100D,
+            106D,
+            120D,
+            140D,
+            158D,
+            200D,
+            211D});
+			this.lineWidthPicker2.Location = new System.Drawing.Point(6, 72);
+			this.lineWidthPicker2.Name = "lineWidthPicker2";
+			this.lineWidthPicker2.Size = new System.Drawing.Size(121, 22);
+			this.lineWidthPicker2.TabIndex = 18;
+			this.lineWidthPicker2.Width = 0.3D;
+			// 
+			// lineWidthPicker1
+			// 
+			this.lineWidthPicker1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.lineWidthPicker1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.lineWidthPicker1.FormattingEnabled = true;
+			this.lineWidthPicker1.Location = new System.Drawing.Point(37, 185);
+			this.lineWidthPicker1.Name = "lineWidthPicker1";
+			this.lineWidthPicker1.Size = new System.Drawing.Size(121, 22);
+			this.lineWidthPicker1.TabIndex = 17;
+			this.lineWidthPicker1.Width = 0.3D;
+			// 
 			// panel3
 			// 
 			this.panel3.AutoScroll = true;
@@ -469,187 +695,6 @@
 			this.radioButton1.Text = "radioButton1";
 			this.radioButton1.UseVisualStyleBackColor = true;
 			// 
-			// tabPage4
-			// 
-			this.tabPage4.Controls.Add(this.textBox4);
-			this.tabPage4.Controls.Add(this.textBox3);
-			this.tabPage4.Controls.Add(this.textBox2);
-			this.tabPage4.Controls.Add(this.panel7);
-			this.tabPage4.Controls.Add(this.panel6);
-			this.tabPage4.Location = new System.Drawing.Point(4, 22);
-			this.tabPage4.Name = "tabPage4";
-			this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage4.Size = new System.Drawing.Size(784, 531);
-			this.tabPage4.TabIndex = 3;
-			this.tabPage4.Text = "tabPage4";
-			this.tabPage4.UseVisualStyleBackColor = true;
-			this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
-			// 
-			// panel7
-			// 
-			this.panel7.Controls.Add(this.dataGridView2);
-			this.panel7.Location = new System.Drawing.Point(267, 288);
-			this.panel7.Name = "panel7";
-			this.panel7.Size = new System.Drawing.Size(675, 240);
-			this.panel7.TabIndex = 1;
-			// 
-			// dataGridView2
-			// 
-			this.dataGridView2.AllowUserToAddRows = false;
-			this.dataGridView2.AllowUserToDeleteRows = false;
-			this.dataGridView2.AllowUserToResizeColumns = false;
-			this.dataGridView2.AllowUserToResizeRows = false;
-			this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
-			this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-			dataGridViewCellStyle9.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-			dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-			this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column3,
-            this.Column4});
-			this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dataGridView2.Enabled = false;
-			this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-			this.dataGridView2.Name = "dataGridView2";
-			this.dataGridView2.RowHeadersVisible = false;
-			this.dataGridView2.RowTemplate.Height = 23;
-			this.dataGridView2.Size = new System.Drawing.Size(675, 240);
-			this.dataGridView2.TabIndex = 0;
-			// 
-			// Column3
-			// 
-			this.Column3.HeaderText = "Column3";
-			this.Column3.Name = "Column3";
-			// 
-			// Column4
-			// 
-			this.Column4.HeaderText = "Column4";
-			this.Column4.Name = "Column4";
-			// 
-			// panel6
-			// 
-			this.panel6.AutoScroll = true;
-			this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel6.Controls.Add(this.dataGridView);
-			this.panel6.Location = new System.Drawing.Point(8, 17);
-			this.panel6.Name = "panel6";
-			this.panel6.Size = new System.Drawing.Size(682, 160);
-			this.panel6.TabIndex = 0;
-			this.panel6.Click += new System.EventHandler(this.panel6_Click);
-			// 
-			// dataGridView
-			// 
-			this.dataGridView.AllowUserToAddRows = false;
-			this.dataGridView.AllowUserToDeleteRows = false;
-			this.dataGridView.AllowUserToResizeColumns = false;
-			this.dataGridView.AllowUserToResizeRows = false;
-			this.dataGridView.BackgroundColor = System.Drawing.Color.White;
-			this.dataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-			dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-			dataGridViewCellStyle10.Font = new System.Drawing.Font("宋体", 9F);
-			dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-			dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-			this.dataGridView.ColumnHeadersHeight = 30;
-			this.dataGridView.ColumnHeadersVisible = false;
-			this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2});
-			this.dataGridView.EnableHeadersVisualStyles = false;
-			this.dataGridView.Location = new System.Drawing.Point(35, 7);
-			this.dataGridView.Name = "dataGridView";
-			dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-			dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 9F);
-			dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
-			this.dataGridView.RowHeadersVisible = false;
-			this.dataGridView.RowTemplate.Height = 25;
-			this.dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-			this.dataGridView.Size = new System.Drawing.Size(570, 300);
-			this.dataGridView.TabIndex = 1;
-			this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
-			this.dataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellDoubleClick);
-			this.dataGridView.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellEnter);
-			this.dataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseClick);
-			this.dataGridView.Click += new System.EventHandler(this.dataGridView_Click);
-			// 
-			// Column1
-			// 
-			this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-			this.Column1.DefaultCellStyle = dataGridViewCellStyle11;
-			this.Column1.FillWeight = 82.23351F;
-			this.Column1.HeaderText = "构造边缘转角墙";
-			this.Column1.MinimumWidth = 90;
-			this.Column1.Name = "Column1";
-			this.Column1.ReadOnly = true;
-			this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			// 
-			// Column2
-			// 
-			this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Column2.FillWeight = 97.76649F;
-			this.Column2.HeaderText = "";
-			this.Column2.MinimumWidth = 70;
-			this.Column2.Name = "Column2";
-			this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			// 
-			// panel8
-			// 
-			this.panel8.Controls.Add(this.label2);
-			this.panel8.Location = new System.Drawing.Point(13, 80);
-			this.panel8.Name = "panel8";
-			this.panel8.Size = new System.Drawing.Size(97, 100);
-			this.panel8.TabIndex = 24;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(30, 23);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(41, 12);
-			this.label2.TabIndex = 0;
-			this.label2.Text = "label2";
-			// 
-			// textBox2
-			// 
-			this.textBox2.Location = new System.Drawing.Point(29, 402);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(100, 21);
-			this.textBox2.TabIndex = 2;
-			this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyUp);
-			// 
-			// textBox3
-			// 
-			this.textBox3.Location = new System.Drawing.Point(29, 273);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(100, 21);
-			this.textBox3.TabIndex = 3;
-			this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
-			// 
-			// textBox4
-			// 
-			this.textBox4.Location = new System.Drawing.Point(29, 332);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(100, 21);
-			this.textBox4.TabIndex = 4;
-			this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
-			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -675,18 +720,19 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage3.PerformLayout();
-			this.panel3.ResumeLayout(false);
-			this.panel4.ResumeLayout(false);
-			this.panel4.PerformLayout();
-			this.groupBox1.ResumeLayout(false);
 			this.tabPage4.ResumeLayout(false);
 			this.tabPage4.PerformLayout();
 			this.panel7.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
 			this.panel6.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+			this.tabPage5.ResumeLayout(false);
 			this.panel8.ResumeLayout(false);
 			this.panel8.PerformLayout();
+			this.panel3.ResumeLayout(false);
+			this.panel4.ResumeLayout(false);
+			this.panel4.PerformLayout();
+			this.groupBox1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -740,6 +786,10 @@
 		private System.Windows.Forms.TextBox textBox4;
 		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TabPage tabPage5;
+		private System.Windows.Forms.Panel panel10;
+		private System.Windows.Forms.Panel panel9;
+		private System.Windows.Forms.Button button5;
 	}
 }
 
