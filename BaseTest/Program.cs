@@ -33,6 +33,12 @@ namespace BaseTest
 			//foreach (System.Drawing.FontFamily family in fonts.Families) {
 			//    Console.WriteLine(family.Name);
 			//}
+			//int intTest = Convert.ToInt32(double.MinValue);
+			//intTest = Convert.ToInt32(double.NegativeInfinity);
+			//intTest = Convert.ToInt32(double.PositiveInfinity);
+			//intTest = Convert.ToInt32(double.MaxValue);
+			//intTest = Convert.ToInt32(double.MinValue);//全部异常
+
 			while (true) {
 				string s = Console.ReadLine();
 				string[] array = s.Split('-');

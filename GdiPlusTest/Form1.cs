@@ -497,11 +497,11 @@ namespace GdiPlusTest
 			List<List<PointF>> stirrupBarPoints = new List<List<PointF>>();
 
 			stirrupBarPoints.Add(new List<PointF> { new PointF(10, 10), new PointF(10, 20), new PointF(10, 30), new PointF(30, 30), new PointF(30, 20), new PointF(30, 10) });
-			stirrupBarPoints.Add(new List<PointF> { new PointF(10, 20), new PointF(10, 25), new PointF( 35,25), new PointF(40,25), new PointF(40, 20), new PointF(35, 20) });
+			stirrupBarPoints.Add(new List<PointF> { new PointF(10, 20), new PointF(10, 25), new PointF(35, 25), new PointF(40, 25), new PointF(40, 20), new PointF(35, 20) });
 
 			GraphicsPath path = new GraphicsPath();
 			//path.AddLines(list.ToArray());
-			path.AddPolygon(stirrupBarPoints[0].ToArray());
+			path.AddPolygon(new PointF[] { new PointF(10, 10), new PointF(10, 20) });
 			path.AddPolygon(stirrupBarPoints[1].ToArray());
 
 			e.Graphics.Clear(panel9.BackColor);

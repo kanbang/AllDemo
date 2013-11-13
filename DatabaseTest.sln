@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitTest", "RevitTest\Revi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexTest", "RegexTest\RegexTest.csproj", "{94C39143-F50C-4F4F-851E-89C9E165E00C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GZipStreamTest", "GZipStreamTest\GZipStreamTest.csproj", "{4725F178-224B-46FF-AB86-B44F6BAB8426}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -167,6 +169,16 @@ Global
 		{94C39143-F50C-4F4F-851E-89C9E165E00C}.Release|Mixed Platforms.Build.0 = Release|x86
 		{94C39143-F50C-4F4F-851E-89C9E165E00C}.Release|x86.ActiveCfg = Release|x86
 		{94C39143-F50C-4F4F-851E-89C9E165E00C}.Release|x86.Build.0 = Release|x86
+		{4725F178-224B-46FF-AB86-B44F6BAB8426}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{4725F178-224B-46FF-AB86-B44F6BAB8426}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{4725F178-224B-46FF-AB86-B44F6BAB8426}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{4725F178-224B-46FF-AB86-B44F6BAB8426}.Debug|x86.ActiveCfg = Debug|x86
+		{4725F178-224B-46FF-AB86-B44F6BAB8426}.Debug|x86.Build.0 = Debug|x86
+		{4725F178-224B-46FF-AB86-B44F6BAB8426}.Release|Any CPU.ActiveCfg = Release|x86
+		{4725F178-224B-46FF-AB86-B44F6BAB8426}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{4725F178-224B-46FF-AB86-B44F6BAB8426}.Release|Mixed Platforms.Build.0 = Release|x86
+		{4725F178-224B-46FF-AB86-B44F6BAB8426}.Release|x86.ActiveCfg = Release|x86
+		{4725F178-224B-46FF-AB86-B44F6BAB8426}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
