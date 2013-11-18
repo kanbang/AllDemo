@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Drawing;
 using Microsoft.Win32;
+using System.Drawing.Drawing2D;
 
 namespace BaseTest
 {
@@ -39,17 +40,50 @@ namespace BaseTest
 			//intTest = Convert.ToInt32(double.MaxValue);
 			//intTest = Convert.ToInt32(double.MinValue);//全部异常
 
-			while (true) {
-				string s = Console.ReadLine();
-				string[] array = s.Split('-');
-				foreach (var item in array) {
-					Console.WriteLine(item);
-				}
-				if (array.Length > 0) {
-					Console.WriteLine(s.Remove(s.Length - array[array.Length - 1].Length));
-				}
-			}
+			//while (true) {
+			//    string s = Console.ReadLine();
+			//    string[] array = s.Split('-');
+			//    foreach (var item in array) {
+			//        Console.WriteLine(item);
+			//    }
+			//    if (array.Length > 0) {
+			//        Console.WriteLine(s.Remove(s.Length - array[array.Length - 1].Length));
+			//    }
+			//}
+			#region 测试矩阵
+			//List<Point> list = new List<Point>();
+			//Point point = new Point(10, 10);
+			//Point point2 = new Point(10, 20);
+			//Point point3 = new Point(20, 10);
+			//Point point4 = new Point(20, 20);
 
+			//Matrix matrix = new Matrix(0, 0, 0, -1, 0, 0);
+			//matrix = new Matrix();
+			//matrix.Scale(1, -1);
+			//matrix.Translate(-5, -25);
+			//Point[] array = new Point[] { point, point2, point3, point4 };
+			//matrix.TransformPoints(array);
+			//Console.WriteLine(array[0]);
+			//Console.WriteLine(array[1]);
+			//Console.WriteLine(array[2]);
+			//Console.WriteLine(array[3]);
+			#endregion
+			#region 测试交互赋值
+			double a = double.MaxValue;
+			double b = double.MinValue;
+			Console.WriteLine(a);
+			Console.WriteLine(b);
+			a = a / 100;
+			b = b / 100;
+			b = a + b;
+			a = b - a;
+			b = b - a;
+			a = a * 100;
+			b = b * 100;
+			Console.WriteLine(a.Equals(double.MinValue));
+			Console.WriteLine(b.Equals(double.MaxValue));
+
+			#endregion
 			Console.ReadLine();
 
 		}

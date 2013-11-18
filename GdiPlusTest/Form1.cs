@@ -441,7 +441,7 @@ namespace GdiPlusTest
 			List<List<PointF>> stirrupBarPoints = new List<List<PointF>>();
 
 			stirrupBarPoints.Add(new List<PointF> { new PointF(10, 10), new PointF(10, 20), new PointF(10, 30), new PointF(30, 30), new PointF(30, 20), new PointF(30, 10) });
-			stirrupBarPoints.Add(new List<PointF> { new PointF(10, 20), new PointF(10, 25), new PointF(35, 25), new PointF(40, 25), new PointF(40, 20), new PointF(35, 20) });
+			//stirrupBarPoints.Add(new List<PointF> { new PointF(10, 20), new PointF(10, 25), new PointF(35, 25), new PointF(40, 25), new PointF(40, 20), new PointF(35, 20) });
 
 			List<GraphicsPath> pathList = new List<GraphicsPath>();
 			GraphicsPath path = new GraphicsPath();
@@ -456,11 +456,34 @@ namespace GdiPlusTest
 			RectangleF rec = path.GetBounds();
 			Matrix mScale = new Matrix();
 
-			mScale.Translate(0 - rec.Left, 0 - rec.Top);//移到 0,0点
-			//path.Flatten(mScale, 1.0f);
-			foreach (GraphicsPath drawPath in pathList) {
-				drawPath.Flatten(mScale, 1.0F);
-			}
+			//mScale.Translate(0 - rec.Left, 0 - rec.Top);//移到 0,0点
+			path.Flatten(mScale, 1.0f);
+
+			PointF pointBS = new PointF(100, 200);
+			PointF pointBE = new PointF(200, 200);
+			PointF pointTS = new PointF(100, 100);
+			PointF pointTE = new PointF(120, 100);
+
+			PointF pointTS2 = new PointF(180, 100);
+			PointF pointTE2 = new PointF(200, 100);
+
+			PointF pointOS = new PointF(80, 150);
+			PointF pointOE = new PointF(210, 150);
+			path.StartFigure();
+			path.AddLine(pointBS, pointBE);
+
+			path.StartFigure();
+			path.AddLine(pointTS, pointTE);
+
+			path.StartFigure();
+			path.AddCurve(new PointF[] { pointBS, pointOS, pointTS });
+
+			path.StartFigure();
+			path.AddLine(pointTS2, pointTE2);
+
+			path.StartFigure();
+			path.AddCurve(new PointF[] { pointBE, pointOE, pointTE2 });
+
 			e.Graphics.Clear(panel9.BackColor);
 			e.Graphics.DrawPath(new Pen(Brushes.Red), path);
 		}
@@ -469,19 +492,10 @@ namespace GdiPlusTest
 		{
 			int offset = 5;
 			GraphicsPath path = new GraphicsPath();
-			//path.AddLines(list.ToArray());
 			path.AddPolygon(list.ToArray());
 			Matrix mScale = new Matrix();
 			mScale.Scale(scale, scale); //进行缩放，比例
 			path.Transform(mScale);
-			mScale = new Matrix();
-
-
-			RectangleF rec = path.GetBounds();
-			mScale.Translate((float)1, (float)1);
-			mScale.Translate((float)1, (float)1);
-			path.Flatten(mScale, 1.0F);
-
 			return path;
 		}
 
@@ -492,21 +506,27 @@ namespace GdiPlusTest
 			scale += 0.1f;
 		}
 
-		private void panel9_Paint_1(object sender, PaintEventArgs e)
+
+		private void panel10_Paint(object sender, PaintEventArgs e)
 		{
+			e.Graphics.Clear(panel9.BackColor);
+
 			List<List<PointF>> stirrupBarPoints = new List<List<PointF>>();
 
 			stirrupBarPoints.Add(new List<PointF> { new PointF(10, 10), new PointF(10, 20), new PointF(10, 30), new PointF(30, 30), new PointF(30, 20), new PointF(30, 10) });
 			stirrupBarPoints.Add(new List<PointF> { new PointF(10, 20), new PointF(10, 25), new PointF(35, 25), new PointF(40, 25), new PointF(40, 20), new PointF(35, 20) });
 
-			GraphicsPath path = new GraphicsPath();
-			//path.AddLines(list.ToArray());
-			path.AddPolygon(new PointF[] { new PointF(10, 10), new PointF(10, 20) });
-			path.AddPolygon(stirrupBarPoints[1].ToArray());
+			foreach (List<PointF> list in stirrupBarPoints) {
+				if (list.Count == 0) {
+					continue;
+				}
+				Matrix mScale = new Matrix();
+				mScale.Scale(scale, scale); //进行缩放，比例
+				PointF[] array = list.ToArray();
+				mScale.TransformPoints(array);
+				e.Graphics.DrawPolygon(new Pen(Brushes.Red), array);
 
-			e.Graphics.Clear(panel9.BackColor);
-			e.Graphics.DrawPath(new Pen(Brushes.Red), path);
-
+			}
 		}
 	}
 
