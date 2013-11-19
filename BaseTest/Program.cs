@@ -52,15 +52,14 @@ namespace BaseTest
 			//}
 			#region 测试矩阵
 			//List<Point> list = new List<Point>();
-			//Point point = new Point(10, 10);
-			//Point point2 = new Point(10, 20);
-			//Point point3 = new Point(20, 10);
-			//Point point4 = new Point(20, 20);
+			//Point point = new Point(100, 100);
+			//Point point2 = new Point(100, 200);
+			//Point point3 = new Point(200, 100);
+			//Point point4 = new Point(200, 200);
 
-			//Matrix matrix = new Matrix(0, 0, 0, -1, 0, 0);
-			//matrix = new Matrix();
+			//Matrix matrix = new Matrix();
 			//matrix.Scale(1, -1);
-			//matrix.Translate(-5, -25);
+			//matrix.Translate(-95, -205);
 			//Point[] array = new Point[] { point, point2, point3, point4 };
 			//matrix.TransformPoints(array);
 			//Console.WriteLine(array[0]);
@@ -68,22 +67,55 @@ namespace BaseTest
 			//Console.WriteLine(array[2]);
 			//Console.WriteLine(array[3]);
 			#endregion
+
 			#region 测试交互赋值
-			double a = double.MaxValue;
-			double b = double.MinValue;
-			Console.WriteLine(a);
-			Console.WriteLine(b);
-			a = a / 100;
-			b = b / 100;
-			b = a + b;
-			a = b - a;
-			b = b - a;
-			a = a * 100;
-			b = b * 100;
-			Console.WriteLine(a.Equals(double.MinValue));
-			Console.WriteLine(b.Equals(double.MaxValue));
+			//double a = double.MaxValue;
+			//double b = double.MinValue;
+			//Console.WriteLine(a);
+			//Console.WriteLine(b);
+			//a = a / 100;
+			//b = b / 100;
+			//b = a + b;
+			//a = b - a;
+			//b = b - a;
+			//a = a * 100;
+			//b = b * 100;
+			//Console.WriteLine(a.Equals(double.MinValue));
+			//Console.WriteLine(b.Equals(double.MaxValue));
 
 			#endregion
+
+			#region 测试字典遍历
+			//Dictionary<string, int> dic = new Dictionary<string, int>();
+			//dic.Add("1", 1);
+			//dic.Add("2", 1);
+			//dic.Add("3", 1);
+			//dic.Add("4", 1);
+			//int i = 5;
+			//string[] array = new string[dic.Count];
+			//dic.Keys.CopyTo(array, 0);
+			//foreach (var item in array) {
+			//    dic.Add(i.ToString(), i);
+			//    i++;
+
+			//}
+
+			//foreach (var item in dic) {
+			//    Console.WriteLine(item.Key);
+
+			//}
+			#endregion
+			#region 测试List
+			List<int> list = new List<int>();
+			list.Add(1);
+			list.Add(2);
+			list.Add(3);
+			list.Add(4);
+			list.GetRange(0, 1);
+			list.GetRange(list.Count - 1, 1);
+
+			#endregion
+
 			Console.ReadLine();
 
 		}
