@@ -5,6 +5,7 @@ using System.IO;
 using System.Drawing;
 using Microsoft.Win32;
 using System.Drawing.Drawing2D;
+using System.Diagnostics;
 
 namespace BaseTest
 {
@@ -106,14 +107,34 @@ namespace BaseTest
 			//}
 			#endregion
 			#region 测试List
-			List<int> list = new List<int>();
-			list.Add(1);
-			list.Add(2);
-			list.Add(3);
-			list.Add(4);
-			list.GetRange(0, 1);
-			list.GetRange(list.Count - 1, 1);
+			//List<int> list = new List<int>();
+			//list.Add(1);
+			//list.Add(2);
+			//list.Add(3);
+			//list.Add(4);
+			//list.GetRange(0, 1);
+			//list.GetRange(list.Count - 1, 1);
 
+			#endregion
+			#region 测试取余和计算
+			int count = 1000000;
+			int last = count - 1;
+			Stopwatch myWatch = new Stopwatch();
+			myWatch.Start();
+
+			for (int i = 0; i < count; i++) {
+				int j = (i + 1) % count;
+			}
+			myWatch.Stop();
+			Console.WriteLine(myWatch.ElapsedMilliseconds);
+			myWatch.Reset();
+			myWatch.Start();
+			for (int i = 0; i < count; i++) {
+				int j = i == last ? 0 : i + 1;
+			}
+			myWatch.Stop();
+			Console.WriteLine(myWatch.ElapsedMilliseconds);
+			
 			#endregion
 
 			Console.ReadLine();
