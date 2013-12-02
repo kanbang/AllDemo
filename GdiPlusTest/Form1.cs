@@ -363,7 +363,7 @@ namespace GdiPlusTest
 		/// <param name="m"></param>
 		protected override void WndProc(ref Message m)
 		{
-			Debug.WriteLine(string.Format("m.HWnd {0}; m.LParam {1};m.Msg {2};,m.Result {3};m.WParam {4}", m.HWnd, m.LParam, m.Msg, m.Result, m.WParam));
+			//Debug.WriteLine(string.Format("m.HWnd {0}; m.LParam {1};m.Msg {2};,m.Result {3};m.WParam {4}", m.HWnd, m.LParam, m.Msg, m.Result, m.WParam));
 
 			if (m.Msg == 0x201 || m.Msg == 0x202 || m.Msg == 0x203 || m.Msg == 0x204 || m.Msg == 0x205 || m.Msg == 0x206 || m.Msg == 0x207 || m.Msg == 0x208 || m.Msg == 0x209 || m.Msg == 0x210) {
 				Point point = new Point(m.LParam.ToInt32());
@@ -524,9 +524,38 @@ namespace GdiPlusTest
 				mScale.Scale(scale, scale); //进行缩放，比例
 				PointF[] array = list.ToArray();
 				mScale.TransformPoints(array);
-				e.Graphics.DrawPolygon(new Pen(Brushes.Red), array);
-
+				//e.Graphics.DrawPolygon(new Pen(Brushes.Red), array);
+				GraphicsPath path = new GraphicsPath();
+				path.AddPolygon(array);
+				e.Graphics.DrawPath(new Pen(Brushes.Red), path);
 			}
+		}
+
+		private void button6_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void button6_MouseClick(object sender, MouseEventArgs e)
+		{
+
+		}
+
+		private void label3_DoubleClick(object sender, EventArgs e)
+		{
+			Debug.WriteLine(MethodBase.GetCurrentMethod().Name);
+
+		}
+
+		private void label3_MouseClick(object sender, MouseEventArgs e)
+		{
+			Debug.WriteLine(MethodBase.GetCurrentMethod().Name);
+
+		}
+
+		private void label3_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			Debug.WriteLine(MethodBase.GetCurrentMethod().Name);
 		}
 	}
 
