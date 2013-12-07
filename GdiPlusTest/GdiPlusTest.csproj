@@ -66,6 +66,12 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.ObjectBuilder2">
+      <HintPath>..\..\Dll\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\..\Dll\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -73,6 +79,15 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Warrentech.Velo.BimDataModel">
+      <HintPath>..\..\Dll\Warrentech.Velo.BimDataModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Warrentech.Velo.CommonDef">
+      <HintPath>..\..\Dll\Warrentech.Velo.CommonDef.dll</HintPath>
+    </Reference>
+    <Reference Include="Warrentech.Velo.GB50010-2010">
+      <HintPath>..\..\Dll\Warrentech.Velo.GB50010-2010.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorPicker.cs">

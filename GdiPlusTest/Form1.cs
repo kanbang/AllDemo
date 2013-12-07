@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.Win32;
+using Warrentech.Velo.BimDataModel;
 
 namespace GdiPlusTest
 {
@@ -556,6 +557,68 @@ namespace GdiPlusTest
 		private void label3_MouseDoubleClick(object sender, MouseEventArgs e)
 		{
 			Debug.WriteLine(MethodBase.GetCurrentMethod().Name);
+		}
+
+		private void panel11_Paint(object sender, PaintEventArgs e)
+		{
+			e.Graphics.Clear(Color.Black);
+			List<Point3D> soruce = new List<Point3D>();
+			soruce.Add(new Point3D(214.667145, 181.538437, 0));
+			soruce.Add(new Point3D(191.806778, 270.600739, 0));
+			soruce.Add(new Point3D(300.448883, 298.486816, 0));
+			soruce.Add(new Point3D(319.0396, 226.058746, 0));
+			soruce.Add(new Point3D(358.449615, 162.5112, 0));
+			soruce.Add(new Point3D(263.128265, 103.396194, 0));
+
+			BoundingBox boxSource = GraphicTools.GetRectanglePoint(soruce, true);
+			Point3D centerSource = boxSource.MinPt + (boxSource.MaxPt - boxSource.MinPt) / 2;
+
+			List<Point3D> list = new List<Point3D>();
+			list.Add(new Point3D(251.407073974609, 141.631622314453, 0));
+			list.Add(new Point3D(175.881851196289, 197.970703125, 0));
+			list.Add(new Point3D(242.947723388672, 287.875701904297, 0));
+			list.Add(new Point3D(302.884399414063, 243.165130615234, 0));
+			list.Add(new Point3D(374.374542236328, 221.242523193359, 0));
+			list.Add(new Point3D(341.490631103516, 114.007308959961, 0));
+			BoundingBox boxlist = GraphicTools.GetRectanglePoint(list, true);
+			Point3D centerlist = boxlist.MinPt + (boxlist.MaxPt - boxlist.MinPt) / 2;
+			Matrix3D _matrix = new Matrix3D();
+			_matrix.Rotate(new Quaternion(new Vector3D(0, 0, 1), angel));
+
+			PointF[] drawSource = new PointF[6];
+			for (int i = 0; i < soruce.Count; i++) {
+				drawSource[i] = new PointF((float)soruce[i].X, (float)soruce[i].Y);
+			}
+			PointF[] drawList = new PointF[6];
+			PointF[] drawListRotate = new PointF[6];
+			List<Point3D> rotate = new List<Point3D>();
+
+			for (int i = 0; i < list.Count; i++) {
+				Point3D point = _matrix.Transform(list[i]);
+				rotate.Add(point);
+				drawList[i] = new PointF((float)list[i].X, (float)list[i].Y);
+			}
+			BoundingBox boxRotate = GraphicTools.GetRectanglePoint(rotate, true);
+			Point3D centerRotate = boxRotate.MinPt + (boxRotate.MaxPt - boxRotate.MinPt) / 2;
+			_matrix = new Matrix3D();
+			_matrix.Translate(centerSource - centerRotate);
+			for (int i = 0; i < rotate.Count; i++) {
+				Point3D point = _matrix.Transform(rotate[i]);
+				drawListRotate[i] = new PointF((float)point.X, (float)point.Y);
+			}
+
+			e.Graphics.DrawPolygon(new Pen(Color.Red), drawSource);
+
+			e.Graphics.DrawPolygon(new Pen(Color.Green), drawList);
+			e.Graphics.DrawPolygon(new Pen(Color.Blue), drawListRotate);
+
+		}
+		double angel = 0.0;
+		private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+		{
+			angel = Convert.ToDouble(numericUpDown1.Value);
+			//angel =  - (75.604189995795200);
+			panel11.Refresh();	
 		}
 	}
 

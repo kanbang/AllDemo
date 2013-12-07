@@ -117,24 +117,34 @@ namespace BaseTest
 
 			#endregion
 			#region 测试取余和计算
-			int count = 1000000;
-			int last = count - 1;
-			Stopwatch myWatch = new Stopwatch();
-			myWatch.Start();
+			//int count = 1000000;
+			//int last = count - 1;
+			//Stopwatch myWatch = new Stopwatch();
+			//myWatch.Start();
 
-			for (int i = 0; i < count; i++) {
-				int j = (i + 1) % count;
+			//for (int i = 0; i < count; i++) {
+			//    int j = (i + 1) % count;
+			//}
+			//myWatch.Stop();
+			//Console.WriteLine(myWatch.ElapsedMilliseconds);
+			//myWatch.Reset();
+			//myWatch.Start();
+			//for (int i = 0; i < count; i++) {
+			//    int j = i == last ? 0 : i + 1;
+			//}
+			//myWatch.Stop();
+			//Console.WriteLine(myWatch.ElapsedMilliseconds);
+
+			#endregion
+			#region 测试++i和i++
+			for (int i = 0; i < 5; i++) {
+				Console.WriteLine(i);
+
 			}
-			myWatch.Stop();
-			Console.WriteLine(myWatch.ElapsedMilliseconds);
-			myWatch.Reset();
-			myWatch.Start();
-			for (int i = 0; i < count; i++) {
-				int j = i == last ? 0 : i + 1;
+			for (int i = 0; i < 5; ++i) {
+				Console.WriteLine(i);
+
 			}
-			myWatch.Stop();
-			Console.WriteLine(myWatch.ElapsedMilliseconds);
-			
 			#endregion
 
 			Console.ReadLine();
