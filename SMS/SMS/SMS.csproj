@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{23DB4E93-C748-43F6-9710-2025BF67F32E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SMS</RootNamespace>
+    <AssemblyName>SMS</AssemblyName>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\..\..\..\..\sqlite-netFx20-binary-Win32-2005-1.0.89.0\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseClass\DataCon.cs" />
+    <Compile Include="BaseClass\DataOperate.cs" />
+    <Compile Include="BasicInfo\frmGoodsInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BasicInfo\frmGoodsInfo.Designer.cs">
+      <DependentUpon>frmGoodsInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BasicInfo\frmPrInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BasicInfo\frmPrInfo.Designer.cs">
+      <DependentUpon>frmPrInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BasicInfo\frmStoreInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BasicInfo\frmStoreInfo.Designer.cs">
+      <DependentUpon>frmStoreInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsManage\frmBGManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GoodsManage\frmBGManage.Designer.cs">
+      <DependentUpon>frmBGManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsManage\frmCKManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GoodsManage\frmCKManage.Designer.cs">
+      <DependentUpon>frmCKManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsManage\frmRGManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GoodsManage\frmRGManage.Designer.cs">
+      <DependentUpon>frmRGManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsManage\frmISManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GoodsManage\frmISManage.Designer.cs">
+      <DependentUpon>frmISManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsManage\frmOSManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GoodsManage\frmOSManage.Designer.cs">
+      <DependentUpon>frmOSManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Help\frmAboutUs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Help\frmAboutUs.Designer.cs">
+      <DependentUpon>frmAboutUs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Help\frmEditPwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Help\frmEditPwd.Designer.cs">
+      <DependentUpon>frmEditPwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Help\frmRightManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Help\frmRightManage.Designer.cs">
+      <DependentUpon>frmRightManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Help\frmUserManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Help\frmUserManage.Designer.cs">
+      <DependentUpon>frmUserManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LookandSum\frmBGLook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LookandSum\frmBGLook.Designer.cs">
+      <DependentUpon>frmBGLook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LookandSum\frmGILook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LookandSum\frmGILook.Designer.cs">
+      <DependentUpon>frmGILook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LookandSum\frmIOSYSum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LookandSum\frmIOSYSum.Designer.cs">
+      <DependentUpon>frmIOSYSum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LookandSum\frmIOSMSum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LookandSum\frmIOSMSum.Designer.cs">
+      <DependentUpon>frmIOSMSum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LookandSum\frmISLook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LookandSum\frmISLook.Designer.cs">
+      <DependentUpon>frmISLook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LookandSum\frmOSLook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LookandSum\frmOSLook.Designer.cs">
+      <DependentUpon>frmOSLook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LookandSum\frmRGLook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LookandSum\frmRGLook.Designer.cs">
+      <DependentUpon>frmRGLook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LookandSum\frmWGLook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LookandSum\frmWGLook.Designer.cs">
+      <DependentUpon>frmWGLook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BasicInfo\frmGoodsInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmGoodsInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BasicInfo\frmPrInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmPrInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BasicInfo\frmStoreInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmStoreInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoodsManage\frmBGManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmBGManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoodsManage\frmCKManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmCKManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoodsManage\frmISManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmISManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoodsManage\frmOSManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOSManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoodsManage\frmRGManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmRGManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Help\frmAboutUs.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmAboutUs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Help\frmEditPwd.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmEditPwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Help\frmRightManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmRightManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Help\frmUserManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmUserManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookandSum\frmBGLook.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmBGLook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookandSum\frmGILook.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmGILook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookandSum\frmIOSYSum.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmIOSYSum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookandSum\frmIOSMSum.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmIOSMSum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookandSum\frmISLook.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmISLook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookandSum\frmOSLook.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmOSLook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookandSum\frmRGLook.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmRGLook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookandSum\frmWGLook.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmWGLook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysManage\frmDataCut.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmDataCut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysManage\frmDataRevert.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmDataRevert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysManage\frmDataStore.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmDataStore.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SysManage\frmDataCut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SysManage\frmDataCut.Designer.cs">
+      <DependentUpon>frmDataCut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SysManage\frmDataRevert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SysManage\frmDataRevert.Designer.cs">
+      <DependentUpon>frmDataRevert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SysManage\frmDataStore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SysManage\frmDataStore.Designer.cs">
+      <DependentUpon>frmDataStore.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Image\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
