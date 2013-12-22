@@ -305,19 +305,33 @@ namespace SMS.BaseClass
 		public int InsertStorage(string P_str_StoreName, string P_str_StorePeople, string P_str_StorePhone, string P_str_StoreUnit, string P_int_StoreRemark)
 		{
 			SQLiteConnection sqlcon = datacon.getcon();
-			SQLiteCommand sqlcom = new SQLiteCommand("proc_insertStorage", sqlcon);
-			sqlcom.CommandType = CommandType.StoredProcedure;
+			SQLiteCommand sqlcom = new SQLiteCommand("select * from tb_Storage where StoreName=@StoreName", sqlcon);
+			sqlcom.Parameters.Add("@StoreName", DbType.AnsiString, 100).Value = P_str_StoreName;
+
+			SQLiteDataAdapter cmd = new SQLiteDataAdapter(sqlcom);
+			try {
+				DataSet myds = new DataSet();
+				cmd.Fill(myds, "test");
+				if(myds.Tables.Count==1 && myds.Tables[0].Rows.Count==1){
+					return 100;
+				}
+
+			} catch (Exception ex) {
+				
+				MessageBox.Show(ex.Message);
+			}
+			 sqlcom = new SQLiteCommand("insert into tb_Storage(StoreName,StorePeople,StorePhone,StoreUnit,StoreRemark) values (@StoreName,@StorePeople,@StorePhone,@StoreUnit,@StoreRemark)", sqlcon);
 			sqlcom.Parameters.Add("@StoreName", DbType.AnsiString, 100).Value = P_str_StoreName;
 			sqlcom.Parameters.Add("@StorePeople", DbType.AnsiString, 20).Value = P_str_StorePeople;
 			sqlcom.Parameters.Add("@StorePhone", DbType.AnsiString, 20).Value = P_str_StorePhone;
 			sqlcom.Parameters.Add("@StoreUnit", DbType.AnsiString, 100).Value = P_str_StoreUnit;
 			sqlcom.Parameters.Add("@StoreRemark", DbType.AnsiString, 1000).Value = P_int_StoreRemark;
-			SQLiteParameter returnValue = sqlcom.Parameters.Add("returnValue", DbType.Int32, 4);
-			returnValue.Direction = ParameterDirection.ReturnValue;
-			sqlcon.Open();
+			int value=0;
 			try
 			{
-				sqlcom.ExecuteNonQuery();
+				sqlcon.Open();
+
+				value=sqlcom.ExecuteNonQuery();
 			}
 			catch (Exception ex)
 			{
@@ -329,8 +343,7 @@ namespace SMS.BaseClass
 				sqlcon.Close();
 				sqlcon.Dispose();
 			}
-			int P_int_returnValue = (int)returnValue.Value;
-			return P_int_returnValue;
+			return value;
 		}
 		#endregion
 
@@ -345,17 +358,29 @@ namespace SMS.BaseClass
 		public int InsertUser(string P_str_UserName, string P_str_UserPwd, string P_str_UserRight)
 		{
 			SQLiteConnection sqlcon = datacon.getcon();
-			SQLiteCommand sqlcom = new SQLiteCommand("proc_insertUser",sqlcon);
-			sqlcom.CommandType = CommandType.StoredProcedure;
+			SQLiteCommand sqlcom = new SQLiteCommand("select * from tb_User where UserName=@UserName",sqlcon);
+			sqlcom.Parameters.Add("@UserName", DbType.AnsiString, 20).Value = P_str_UserName;
+			SQLiteDataAdapter cmd = new SQLiteDataAdapter(sqlcom);
+			try {
+				DataSet myds = new DataSet();
+				cmd.Fill(myds, "test");
+				if(myds.Tables.Count==1 && myds.Tables[0].Rows.Count==1){
+					return 100;
+				}
+
+			} catch (Exception ex) {
+				
+				MessageBox.Show(ex.Message);
+			}
+			sqlcom = new SQLiteCommand("insert into tb_User(UserName,UserPwd,UserRight)     values(@UserName,@UserPwd,@UserRight)",sqlcon);
 			sqlcom.Parameters.Add("@UserName", DbType.AnsiString, 20).Value = P_str_UserName;
 			sqlcom.Parameters.Add("@UserPwd", DbType.AnsiString, 20).Value = P_str_UserPwd;
 			sqlcom.Parameters.Add("@UserRight", DbType.AnsiString, 10).Value = P_str_UserRight;
-			SQLiteParameter returnValue = sqlcom.Parameters.Add("returnValue", DbType.Int32, 4);
-			returnValue.Direction = ParameterDirection.ReturnValue;
-			sqlcon.Open();
+			int value=0;
 			try
 			{
-				sqlcom.ExecuteNonQuery();
+				sqlcon.Open();
+				value=sqlcom.ExecuteNonQuery();
 			}
 			catch (Exception ex)
 			{
@@ -367,8 +392,7 @@ namespace SMS.BaseClass
 				sqlcon.Close();
 				sqlcon.Dispose();
 			}
-			int P_int_returnValue = (int)returnValue.Value;
-			return P_int_returnValue;
+			return value;
 		}
 		#endregion
 
