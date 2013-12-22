@@ -10,7 +10,7 @@ namespace SMS.BaseClass
 {
 	class DataCon
 	{
-		string M_str_sqlcon = "E:\\Work\\4ConcreteFloor\\test2.db";
+		string M_str_sqlcon = "sms.db";
 
 		#region  建立数据库连接
 		/// <summary>
