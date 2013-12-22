@@ -1,6 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
+# SharpDevelop 4.3
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMS", "SMS\SMS.csproj", "{23DB4E93-C748-43F6-9710-2025BF67F32E}"
 EndProject
 Global
@@ -9,7 +10,7 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{23DB4E93-C748-43F6-9710-2025BF67F32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23DB4E93-C748-43F6-9710-2025BF67F32E}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{23DB4E93-C748-43F6-9710-2025BF67F32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23DB4E93-C748-43F6-9710-2025BF67F32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23DB4E93-C748-43F6-9710-2025BF67F32E}.Release|Any CPU.Build.0 = Release|Any CPU
