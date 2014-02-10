@@ -137,18 +137,166 @@ namespace BaseTest
 
 			#endregion
 			#region 测试++i和i++
-			for (int i = 0; i < 5; i++) {
-				Console.WriteLine(i);
+			//for (int i = 0; i < 5; i++) {
+			//    Console.WriteLine(i);
 
-			}
-			for (int i = 0; i < 5; ++i) {
-				Console.WriteLine(i);
+			//}
+			//for (int i = 0; i < 5; ++i) {
+			//    Console.WriteLine(i);
 
+			//}
+			#endregion
+			#region 测试从M个数中对称的取出N个数，N<M
+			//while (true) {
+			//    int offset = 0;
+			//    int xLongitudeBarNumber = 9;
+			//    int yStirBarNumber = Convert.ToInt32(Console.ReadLine());
+			//    StringBuilder builder = new StringBuilder();
+
+			//    FillIndex(offset, xLongitudeBarNumber, yStirBarNumber, builder);
+			//    Console.WriteLine(builder.ToString());
+
+			//}
+			#endregion
+			#region 测试Convert
+			//while (true) {
+			//    int yStirBarNumber = Convert.ToInt32(Convert.ToDouble(Console.ReadLine()));
+			//    Console.WriteLine(yStirBarNumber.ToString());
+
+			//}
+
+			#endregion
+			#region 测试格式化
+			while (true) {
+				string yStirBarNumber = Console.ReadLine();
+				Console.WriteLine(string.Format("{0}", string.Format("{0,5}", yStirBarNumber)));
 			}
 			#endregion
 
 			Console.ReadLine();
 
+		}
+		private static void FillIndex(int xLongitudeBarNumber, int yStirBarNumber, StringBuilder builder, int offset)
+		{
+			switch (yStirBarNumber) {
+				case 0:
+					break;
+				default:
+					break;
+
+			}
+		}
+
+		//private static void FillIndex(int offset, int xLongitudeBarNumber, int yStirBarNumber, StringBuilder builder)
+		//{
+		//    if (yStirBarNumber <= 0) {
+		//        return;
+		//    }
+		//    if (xLongitudeBarNumber < yStirBarNumber) {
+		//        builder.Append("太大");
+		//    } else if (xLongitudeBarNumber == yStirBarNumber) {
+		//        FillForSame(offset, xLongitudeBarNumber, builder);
+		//    } else if (xLongitudeBarNumber > 3 && xLongitudeBarNumber == yStirBarNumber + 1) {
+		//        builder.Append(offset + ",");
+		//        builder.Append(xLongitudeBarNumber - 1 + offset + ",");
+		//        FillIndex(offset + 1, xLongitudeBarNumber - 2, yStirBarNumber - 2, builder);
+		//    } else {
+		//        int startIndex = (xLongitudeBarNumber - yStirBarNumber) / 2;
+		//        int remainIndex = xLongitudeBarNumber - 2 * startIndex;
+		//        switch (xLongitudeBarNumber) {
+		//            case 2:
+		//                FillFor2(offset, builder);
+		//                break;
+		//            case 3:
+		//                if (yStirBarNumber == 2) {//3-2
+		//                    FillFor3T2(offset, builder);
+		//                } else {
+		//                    FillFor3T1(offset, builder);
+		//                }
+		//                break;
+		//            case 4:
+		//            case 5:
+		//                FillIndex(offset + startIndex, remainIndex, yStirBarNumber, builder);
+		//                break;
+		//            case 6:
+		//                if (yStirBarNumber == 2) {//3-1 3-1
+		//                    FillIndex(offset, 3, 1, builder);
+		//                    FillIndex(offset + 3, 3, 1, builder);
+		//                } else {
+		//                    FillIndex(offset + startIndex, remainIndex, yStirBarNumber, builder);
+		//                }
+		//                break;
+		//            case 7:
+		//                if (yStirBarNumber == 3) {//5-2 2-1
+		//                    FillIndex(offset, 5, 2, builder);
+		//                    FillIndex(offset + 5, 2, 1, builder);
+		//                } else {
+		//                    FillIndex(offset + startIndex, remainIndex, yStirBarNumber, builder);
+		//                }
+		//                break;
+		//            case 8:
+		//                if (yStirBarNumber == 3) {//5-2 3-1
+		//                    FillIndex(offset, 5, 2, builder);
+		//                    FillIndex(offset + 5, 3, 1, builder);
+		//                } else {
+		//                    FillIndex(offset + startIndex, remainIndex, yStirBarNumber, builder);
+		//                }
+		//                break;
+		//            case 9:
+		//                if (yStirBarNumber == 2) {//5-1 4-1
+		//                    FillIndex(offset, 5, 1, builder);
+		//                    FillIndex(offset + 5, 4, 1, builder);
+		//                } else {
+		//                    FillIndex(offset + startIndex, remainIndex, yStirBarNumber, builder);
+		//                }
+		//                break;
+		//            default:
+		//                break;
+		//        }
+		//        int startIndex = (xLongitudeBarNumber - yStirBarNumber) / 2;//起点
+		//        int remainIndex = xLongitudeBarNumber - 2 * startIndex;
+		//        int nextStartIndex = (xLongitudeBarNumber - yStirBarNumber) / 2;//起点
+		//        if (nextStartIndex == 0) {
+		//            builder.Append(startIndex + offset + ",");
+		//            builder.Append(xLongitudeBarNumber + offset - startIndex + 1 + ",");
+		//            yStirBarNumber -= 2;
+		//            FillIndex(startIndex + offset, remainIndex, yStirBarNumber, builder);
+		//        } else {
+		//            if (yStirBarNumber >= 2) {
+		//                builder.Append(startIndex + offset + ",");
+		//                builder.Append(xLongitudeBarNumber + offset - startIndex + 1 + ",");
+		//                yStirBarNumber -= 2;
+		//                FillIndex(startIndex + offset, remainIndex, yStirBarNumber, builder);
+		//            } else {
+		//                builder.Append(startIndex + 1 + offset + ",");
+		//            }
+		//        }
+
+
+		//    }
+		//}
+
+		private static void FillFor3T1(int offset, StringBuilder builder)
+		{
+			builder.Append(1 + offset + ",");//3-1
+		}
+
+		private static void FillFor3T2(int offset, StringBuilder builder)
+		{
+			builder.Append(offset + ",");
+			builder.Append(2 + offset + ",");
+		}
+
+		private static void FillFor2(int offset, StringBuilder builder)
+		{
+			builder.Append(offset + ",");//2-1
+		}
+
+		private static void FillForSame(int offset, int xLongitudeBarNumber, StringBuilder builder)
+		{
+			for (int i = 0; i < xLongitudeBarNumber; i++) {
+				builder.Append(i + offset + 1 + ",");
+			}
 		}
 
 		private static void TestString()
