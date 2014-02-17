@@ -113,105 +113,6 @@ namespace ClassLibrary1
 			}
 		}
 
-		[CommandMethod("GetReinForSlabFromLayer")]
-		public static void GetReinForSlabFromLayer()
-		{
-			Database db = HostApplicationServices.WorkingDatabase;
-			List<DBText> dbTextList = new List<DBText>();
-			Editor ed = Application.DocumentManager.MdiActiveDocument.Editor;
-
-			PromptEntityResult entityResult = ed.GetEntity("选择一个钢筋");
-			if (entityResult.Status != PromptStatus.OK) {
-				return;
-			}
-			ObjectId selectedID = entityResult.ObjectId;
-
-			using (Transaction trans = db.TransactionManager.StartTransaction()) {
-				LayerTable lt = (LayerTable)trans.GetObject(db.LayerTableId, OpenMode.ForRead);
-				Entity selectedEnt = (Entity)trans.GetObject(selectedID, OpenMode.ForRead);
-				if (selectedEnt == null) {
-					return;
-				}
-				ObjectId[] oids = GetObjectIdsAtLayer(selectedEnt.Layer);
-				if (oids == null) {
-					return;
-				}
-				List<Polyline> allRein = new List<Polyline>();
-				for (int i = 0; i < oids.Length; i++) {
-					Entity ent = (Entity)trans.GetObject(oids[i], OpenMode.ForRead);
-					if (ent.GetType().Name == "Polyline") {
-						allRein.Add((Polyline)ent);
-					}
-				}
-
-				//StringBuilder builder = new StringBuilder();
-
-				//BlockTable bt = (BlockTable)trans.GetObject(db.BlockTableId, OpenMode.ForRead);
-				//BlockTableRecord btr = (BlockTableRecord)trans.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite);
-				//foreach (var x in allText) {
-				//    foreach (var y in x.Value) {
-				//        foreach (var text in y.Value) {
-				//            var circle = GetClosestCircle(allCircle, x.Key, y.Key, text, trans, btr);
-				//            if (circle != null) {
-				//                builder.AppendLine(string.Format("文字：{0}", text.TextString));
-				//                builder.AppendLine(string.Format("圆点:{0},{1},FaceStyleId:{2}", circle.Center.X, circle.Center.Y, circle.FaceStyleId));
-				//                var newText = new DBText();
-				//                newText.Position = circle.Center;
-				//                newText.TextString = text.TextString;
-				//                newText.Height = text.Height;
-				//                dbTextList.Add(newText);
-				//                btr.AppendEntity(newText);
-				//                try {
-				//                    trans.AddNewlyCreatedDBObject(newText, true);
-
-				//                } catch (System.Exception ex) {
-				//                    throw ex;
-				//                }
-				//            } else {
-				//                builder.AppendLine(string.Format("文字：{0}", text.TextString));
-				//                builder.AppendLine("圆点:没有啊");
-				//            }
-				//        }
-				//    }
-				//}
-				//string path = @"C:\acadacad.text";
-				//if (File.Exists(path)) {
-				//    File.Delete(path);
-				//}
-				//StreamWriter rw = File.CreateText(path);
-				//rw.WriteLine(builder.ToString());
-				//rw.Flush();
-				//rw.Close();
-				ed.WriteMessage("搞定 收工");
-				trans.Commit();
-			}
-		}
-
-		#region "取得图层下的所有对象id"
-		/// <summary>
-		/// 取得图层下的所有对象id
-		/// </summary>
-		/// <param name="name">图层名称</param>
-		/// <returns>id集合</returns>
-		public static ObjectId[] GetObjectIdsAtLayer(string name)
-		{
-			ObjectIdCollection ids = new ObjectIdCollection();
-
-			PromptSelectionResult ProSset = null;
-			TypedValue[] filList = new TypedValue[1] { new TypedValue((int)DxfCode.LayerName, name) };
-			SelectionFilter sfilter = new SelectionFilter(filList);
-			Editor ed = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Editor;
-			ProSset = ed.SelectAll(sfilter);
-			if (ProSset.Status == PromptStatus.OK) {
-
-				SelectionSet sst = ProSset.Value;
-
-				return sst.GetObjectIds();
-
-			}
-
-			return null;
-		}
 
 		private static void AddCircle(Dictionary<int, Dictionary<int, List<Circle>>> allCircle, Entity ent)
 		{
@@ -468,7 +369,7 @@ namespace ClassLibrary1
 			return circle;
 		}
 
-		//#region 提取一个图层上的各类元素
+		#region 提取一个图层上的各类元素
 		//[CommandMethod("BlockInLayerCAD")]
 		//public void BlockInLayerCAD ()
 		//{
