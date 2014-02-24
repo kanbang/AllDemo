@@ -93,14 +93,13 @@ namespace HelloCad
 					BlockTable bt = trans.GetObject(db.BlockTableId, OpenMode.ForRead) as BlockTable;
 					BlockTableRecord btr = trans.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForRead) as BlockTableRecord;
 					DBText reinInfo = null;
-					double distance = -1;
+					double distance = -1;					
+					FillReinInfos(points, reinInfos, vector, trans, oids, ref reinInfo, ref distance);
 					if (reinInfo != null) {
 						reinInfos.Add(reinInfo.TextString);
 					} else {
 						reinInfos.Add(string.Empty);
 					}
-					FillReinInfos(points, reinInfos, vector, trans, oids, ref reinInfo, ref distance);
-					
 				}
 			}
 			return reinInfos;
