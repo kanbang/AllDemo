@@ -93,7 +93,7 @@ namespace HelloCad
 					BlockTable bt = trans.GetObject(db.BlockTableId, OpenMode.ForRead) as BlockTable;
 					BlockTableRecord btr = trans.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForRead) as BlockTableRecord;
 					DBText reinInfo = null;
-					double distance = -1;					
+					double distance = -1;
 					FillReinInfos(points, reinInfos, vector, trans, oids, ref reinInfo, ref distance);
 					if (reinInfo != null) {
 						reinInfos.Add(reinInfo.TextString);
@@ -144,11 +144,7 @@ namespace HelloCad
 				Point3d center = new Point3d((extents.MinPoint.X + extents.MaxPoint.X) / 2, (extents.MinPoint.Y + extents.MaxPoint.Y)/2, 0);
 				Vector3d vecLeft = center - points[1];
 				Vector3d vecRight = center - points[2];
-				if (vecLeft.Length > vecRight.Length) {
-					right = left;
-					left = 0;
-				}
-				if ((points[1].X > points[2].X) || (points[1].Y > points[2].Y)) {
+				if (vecLeft.Length > vecRight.Length ||(points[1].X > points[2].X) || (points[1].Y > points[2].Y)) {
 					right = left;
 					left = 0;
 				}
