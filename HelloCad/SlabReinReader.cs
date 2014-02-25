@@ -22,14 +22,15 @@ namespace HelloCad
 			List<DBText> dbTextList = new List<DBText>();
 			Editor ed = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Editor;
 			List<Polyline> reins = GetAllRein(db, ed);
-			object acad = Autodesk.AutoCAD.ApplicationServices.Application.AcadApplication;
-			acad.GetType().InvokeMember("ZoomExtents", BindingFlags.InvokeMethod, null, acad, null);
-			StringBuilder builder = new StringBuilder();
-			FillReinInfos(db, ed, reins, builder);
 			PromptPointResult pointResult = ed.GetPoint("指定插入点");
+			StringBuilder builder = new StringBuilder();
+
 			if (pointResult.Status == PromptStatus.OK) {
 				builder.AppendLine(pointResult.Value.ToString());
 			}
+			object acad = Autodesk.AutoCAD.ApplicationServices.Application.AcadApplication;
+			acad.GetType().InvokeMember("ZoomExtents", BindingFlags.InvokeMethod, null, acad, null);
+			FillReinInfos(db, ed, reins, builder);
 
 			SaveFileDialog saveFileDialog = new SaveFileDialog();
 			saveFileDialog.Filter = "文本文件|*.txt";
