@@ -14,6 +14,7 @@ using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.Colors;
 using HelloCad.Model;
 
+[assembly: CommandClass(typeof(HelloCad.EleReinReader))]
 namespace HelloCad
 {
 	public class EleReinReader
@@ -21,11 +22,39 @@ namespace HelloCad
 		[CommandMethod("ReadGGJTxt")]
 		public static void ReadGGJTxt()
 		{
+			//string path = string.Empty;
+			//using (FolderBrowserDialog dlgOpen = new FolderBrowserDialog()) {
+			//    dlgOpen.ShowNewFolderButton = false;
+			//    if (dlgOpen.ShowDialog() == DialogResult.OK) {
+			//        path = dlgOpen.SelectedPath;
+			//    } else {
+			//        return;
+			//    }
+			//}
+			//string[] files = Directory.GetFiles(path);
+			//foreach (var fileName in files) {
+			//    string dwgName = Path.ChangeExtension(fileName, ".dwg");
+			//    string sLocalRoot = Acad.Application.GetSystemVariable("LOCALROOTPREFIX") as string;
+			//    string sTemplatePath = sLocalRoot + "Template\\acad.dwt";
+			//    Document doc = Acad.Application.DocumentManager.Add(sTemplatePath);
+			//    using (DocumentLock docLock = doc.LockDocument()) {
+			//        doc.Database.SaveAs(dwgName, true, DwgVersion.Newest, null);
+			//        string[] allContent = File.ReadAllLines(fileName);
+			//        WriteOneFile(doc, allContent);
+			//        doc.CloseAndSave(dwgName);
+			//    }
+			//}
 			OpenFileDialog file = new OpenFileDialog();
 			if (file.ShowDialog() != DialogResult.OK) {
 				return;
 			}
 			string[] allContent = File.ReadAllLines(file.FileName);
+			Document acDoc = Acad.Application.DocumentManager.MdiActiveDocument;
+			WriteOneFile(acDoc, allContent);
+		}
+
+		private static void WriteOneFile(Document doc, string[] allContent)
+		{
 			Dictionary<string, List<EleReinDataModel>> list = new Dictionary<string, List<EleReinDataModel>>();
 			foreach (var item in allContent) {
 				string[] detail = item.Replace(" ", "").Split(';');
@@ -48,8 +77,7 @@ namespace HelloCad
 
 			Dictionary<string, LayerTable> layers = new Dictionary<string, LayerTable>();
 			// Get the current document and database获取当前文档和数据库
-			Document acDoc = Acad.Application.DocumentManager.MdiActiveDocument;
-			Database acCurDb = acDoc.Database;
+			Database acCurDb = doc.Database;
 			// Start a transaction启动事务
 			using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction()) {
 				foreach (var item in list) {
@@ -91,7 +119,6 @@ namespace HelloCad
 				// Save the changes and dispose of the transaction保存修改并关闭事务
 				acTrans.Commit();
 			}
-
 		}
 
 		private static DBText GetDBText(string p, string p_2, string p_3, string p_4)
@@ -122,7 +149,7 @@ namespace HelloCad
 		private static Point2d GetPoint2d(string p)
 		{
 			string[] values = p.Split(',');
-			return new Point2d(values[0].Contains("E") ? 0 : Convert.ToDouble(values[0].Replace("(", "")), values[1].Contains("E") ? 0 : Convert.ToDouble(values[1]));
+			return new Point2d(values[0].Contains("E") ? 0 : (int)Convert.ToDouble(values[0].Replace("(", "")), values[1].Contains("E") ? 0 : (int)Convert.ToDouble(values[1]));
 		}
 
 	}
