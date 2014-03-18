@@ -97,7 +97,7 @@ namespace HelloCad
 
 		private static DBText GetDBText(string p, string p_2, string p_3, string p_4)
 		{
-			string txt = string.Format("{0};{1};{2}", p.Remove(0, 5), p_2.Remove(0, 5), p_3.Remove(0, 5));
+			string txt = string.Format("{0};{1};{2}", p.Remove(0, p.IndexOf(':') + 1), p_2.Remove(0, p_2.IndexOf(':') + 1), p_3.Remove(0, p_3.IndexOf(':') + 1));
 			Point2d point = GetPolyline(p_4).GetPoint2dAt(0);
 			DBText dbText = new DBText();
 			dbText.TextString = txt;
