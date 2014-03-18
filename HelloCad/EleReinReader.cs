@@ -22,38 +22,43 @@ namespace HelloCad
 		[CommandMethod("ReadGGJTxt")]
 		public static void ReadGGJTxt()
 		{
-			//string path = string.Empty;
-			//using (FolderBrowserDialog dlgOpen = new FolderBrowserDialog()) {
-			//    dlgOpen.ShowNewFolderButton = false;
-			//    if (dlgOpen.ShowDialog() == DialogResult.OK) {
-			//        path = dlgOpen.SelectedPath;
-			//    } else {
-			//        return;
-			//    }
-			//}
-			//string[] files = Directory.GetFiles(path);
-			//foreach (var fileName in files) {
-			//    string dwgName = Path.ChangeExtension(fileName, ".dwg");
-			//    string sLocalRoot = Acad.Application.GetSystemVariable("LOCALROOTPREFIX") as string;
-			//    string sTemplatePath = sLocalRoot + "Template\\acad.dwt";
-			//    Document doc = Acad.Application.DocumentManager.Add(sTemplatePath);
-			//    using (DocumentLock docLock = doc.LockDocument()) {
-			//        doc.Database.SaveAs(dwgName, true, DwgVersion.Newest, null);
-			//        string[] allContent = File.ReadAllLines(fileName);
-			//        WriteOneFile(doc, allContent);
-			//        doc.CloseAndSave(dwgName);
-			//    }
-			//}
-			OpenFileDialog file = new OpenFileDialog();
-			if (file.ShowDialog() != DialogResult.OK) {
-				return;
+			string path = string.Empty;
+			using (FolderBrowserDialog dlgOpen = new FolderBrowserDialog()) {
+				dlgOpen.ShowNewFolderButton = false;
+				if (dlgOpen.ShowDialog() == DialogResult.OK) {
+					path = dlgOpen.SelectedPath;
+				} else {
+					return;
+				}
 			}
-			string[] allContent = File.ReadAllLines(file.FileName);
-			Document acDoc = Acad.Application.DocumentManager.MdiActiveDocument;
-			WriteOneFile(acDoc, allContent);
+			string[] files = Directory.GetFiles(path, "*.txt");
+			foreach (var fileName in files) {
+				string dwgName = Path.ChangeExtension(fileName, ".dwg");
+				string sLocalRoot = Acad.Application.GetSystemVariable("LOCALROOTPREFIX") as string;
+				string sTemplatePath = sLocalRoot + "Template\\acad.dwt";
+				Document doc = Acad.Application.DocumentManager.Add(sTemplatePath);
+				using (DocumentLock docLock = doc.LockDocument()) {
+					doc.Database.SaveAs(dwgName, true, DwgVersion.Newest, null);
+				}
+				doc.CloseAndSave(dwgName);
+				doc = Acad.Application.DocumentManager.Open(dwgName, false);
+				string[] allContent = File.ReadAllLines(fileName);
+				WriteOneFile(allContent);
+				doc.CloseAndSave(dwgName);
+			}
+			#region 单个文件
+			//OpenFileDialog file = new OpenFileDialog();
+			//if (file.ShowDialog() != DialogResult.OK) {
+			//    return;
+			//}
+			//string[] allContent = File.ReadAllLines(file.FileName);
+			//Document acDoc = Acad.Application.DocumentManager.MdiActiveDocument;
+			//WriteOneFile(acDoc, allContent);
+			#endregion
+
 		}
 
-		private static void WriteOneFile(Document doc, string[] allContent)
+		private static void WriteOneFile(string[] allContent)
 		{
 			Dictionary<string, List<EleReinDataModel>> list = new Dictionary<string, List<EleReinDataModel>>();
 			foreach (var item in allContent) {
@@ -77,6 +82,7 @@ namespace HelloCad
 
 			Dictionary<string, LayerTable> layers = new Dictionary<string, LayerTable>();
 			// Get the current document and database获取当前文档和数据库
+			Document doc = Acad.Application.DocumentManager.MdiActiveDocument;
 			Database acCurDb = doc.Database;
 			// Start a transaction启动事务
 			using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction()) {
