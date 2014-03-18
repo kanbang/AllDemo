@@ -34,12 +34,12 @@ namespace HelloCad
 				model.Type = detail[0];
 				model.Name = detail[2];
 				model.ColorIndex = Convert.ToInt32(model.Type.Split(':')[1]);
-				if (model.ColorIndex == 4 || model.ColorIndex == 7) {
-					model.Polyline = GetPolyline(detail[6], detail[7], detail[8], detail[9]);
+				if (model.ColorIndex == 4 || model.ColorIndex == 7 || model.ColorIndex == 5 || item.Contains("高度")) {
+					model.Polyline = GetPolyline(detail[6]);
 					model.DbText = GetDBText(detail[3], detail[4], detail[5], detail[6]);
 
 				} else {
-					model.Polyline = GetPolyline(detail[3], detail[4], detail[5], detail[6]);
+					model.Polyline = GetPolyline(detail[3]);
 				}
 				if (!list.ContainsKey(model.Type)) {
 					list[model.Type] = new List<EleReinDataModel>();
@@ -57,10 +57,10 @@ namespace HelloCad
 					// Open the Layer table for read以读打开图层表
 					LayerTable acLyrTbl;
 					acLyrTbl = acTrans.GetObject(acCurDb.LayerTableId, OpenMode.ForRead) as LayerTable;
-					string sLayerName = item.Key;
+					string sLayerName = (item.Value[0].ColorIndex + 1).ToString();
 					if (acLyrTbl.Has(sLayerName) == false) {
 						LayerTableRecord acLyrTblRec = new LayerTableRecord();
-						acLyrTblRec.Color = Color.FromColorIndex(ColorMethod.ByAci, (short)item.Value[0].ColorIndex);
+						acLyrTblRec.Color = Color.FromColorIndex(ColorMethod.ByAci, (short)(item.Value[0].ColorIndex + 1));
 						acLyrTblRec.Name = sLayerName;
 						// Upgrade the Layer table for write以写升级打开图层表
 						acLyrTbl.UpgradeOpen();
@@ -98,28 +98,32 @@ namespace HelloCad
 		private static DBText GetDBText(string p, string p_2, string p_3, string p_4)
 		{
 			string txt = string.Format("{0};{1};{2}", p.Remove(0, 5), p_2.Remove(0, 5), p_3.Remove(0, 5));
-			Point2d point = GetPoint2d(p_4);
+			Point2d point = GetPolyline(p_4).GetPoint2dAt(0);
 			DBText dbText = new DBText();
 			dbText.TextString = txt;
 			dbText.Position = new Point3d(point.X, point.Y, 0);
+			dbText.Height = 50;
 			return dbText;
 		}
 
-		private static Polyline GetPolyline(string p, string p_2, string p_3, string p_4)
+		private static Polyline GetPolyline(string p)
 		{
+			p = p.Replace("),", ";");
+			string[] value = p.Split(';');
 			Polyline polyline = new Polyline();
-			polyline.AddVertexAt(0, GetPoint2d(p), 0, 0, 0);
-			polyline.AddVertexAt(1, GetPoint2d(p_2), 0, 0, 0);
-			polyline.AddVertexAt(2, GetPoint2d(p_3), 0, 0, 0);
-			polyline.AddVertexAt(3, GetPoint2d(p_4), 0, 0, 0);
 
+			polyline.AddVertexAt(0, GetPoint2d(value[0]), 0, 0, 0);
+			polyline.AddVertexAt(1, GetPoint2d(value[1]), 0, 0, 0);
+			polyline.AddVertexAt(2, GetPoint2d(value[2]), 0, 0, 0);
+			polyline.AddVertexAt(3, GetPoint2d(value[3]), 0, 0, 0);
+			polyline.Closed = true;
 			return polyline;
 		}
 
 		private static Point2d GetPoint2d(string p)
 		{
 			string[] values = p.Split(',');
-			return new Point2d(Convert.ToDouble(values[0].Replace("(", "")), Convert.ToDouble(values[1]));
+			return new Point2d(values[0].Contains("E") ? 0 : Convert.ToDouble(values[0].Replace("(", "")), values[1].Contains("E") ? 0 : Convert.ToDouble(values[1]));
 		}
 
 	}
