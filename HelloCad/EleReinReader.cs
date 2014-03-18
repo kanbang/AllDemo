@@ -21,7 +21,6 @@ namespace HelloCad
 		[CommandMethod("ReadGGJTxt")]
 		public static void ReadGGJTxt()
 		{
-
 			OpenFileDialog file = new OpenFileDialog();
 			if (file.ShowDialog() != DialogResult.OK) {
 				return;
