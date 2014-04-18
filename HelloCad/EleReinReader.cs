@@ -40,11 +40,13 @@ namespace HelloCad
 				using (DocumentLock docLock = doc.LockDocument()) {
 					doc.Database.SaveAs(dwgName, true, DwgVersion.Newest, null);
 				}
-				doc.CloseAndSave(dwgName);
-				doc = Acad.Application.DocumentManager.Open(dwgName, false);
+				Document newDoc = Acad.Application.DocumentManager.Open(dwgName, false);
+				if (!newDoc.IsActive) {
+					Acad.Application.DocumentManager.MdiActiveDocument = newDoc;
+				}
 				string[] allContent = File.ReadAllLines(fileName);
 				WriteOneFile(allContent);
-				doc.CloseAndSave(dwgName);
+				
 			}
 			#region 单个文件
 			//OpenFileDialog file = new OpenFileDialog();

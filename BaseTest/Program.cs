@@ -11,6 +11,8 @@ namespace BaseTest
 {
 	class Program
 	{
+		static string s;
+		public static string value { get; set; }
 		static void Main(string[] args)
 		{
 			//TestString();
@@ -167,12 +169,14 @@ namespace BaseTest
 
 			#endregion
 			#region 测试格式化
-			while (true) {
-				string yStirBarNumber = Console.ReadLine();
-				Console.WriteLine(string.Format("{0}", string.Format("{0,5}", yStirBarNumber)));
-			}
+			//while (true) {
+			//    string yStirBarNumber = Console.ReadLine();
+			//    Console.WriteLine(string.Format("{0}", string.Format("{0,5}", yStirBarNumber)));
+			//}
+			///Console.WriteLine(DateTime.Now.ToString("MMdd-HHmm"));
 			#endregion
-
+			Console.WriteLine(value);
+			Console.WriteLine(s);
 			Console.ReadLine();
 
 		}
