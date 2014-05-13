@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CreateEntity", "CreateEntity\CreateEntity.vcproj", "{4A997502-2DDC-4C34-B07A-41CDFC4FD4C9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DBXMessage", "DBXMessage\DBXMessage.vcproj", "{B4BFEE98-036E-4573-A8F6-6D53539BA7AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A997502-2DDC-4C34-B07A-41CDFC4FD4C9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4A997502-2DDC-4C34-B07A-41CDFC4FD4C9}.Debug|Win32.Build.0 = Debug|Win32
+		{4A997502-2DDC-4C34-B07A-41CDFC4FD4C9}.Release|Win32.ActiveCfg = Release|Win32
+		{4A997502-2DDC-4C34-B07A-41CDFC4FD4C9}.Release|Win32.Build.0 = Release|Win32
+		{B4BFEE98-036E-4573-A8F6-6D53539BA7AB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B4BFEE98-036E-4573-A8F6-6D53539BA7AB}.Debug|Win32.Build.0 = Debug|Win32
+		{B4BFEE98-036E-4573-A8F6-6D53539BA7AB}.Release|Win32.ActiveCfg = Release|Win32
+		{B4BFEE98-036E-4573-A8F6-6D53539BA7AB}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
