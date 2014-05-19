@@ -18,11 +18,11 @@ namespace Warrentech.Velo.VeloView
 {
 	public class LoadVelo : IExtensionApplication
 	{
+		FontChanger change = new FontChanger();
+
 		public void Initialize()
 		{
-			Document doc = AcadApp.DocumentManager.MdiActiveDocument;
-			Editor ed = doc.Editor;
-			ed.WriteMessage("\nAutoSave程序开始初始化\n");
+			change.AddEvents();
 			SimulateHelper helper = new SimulateHelper();
 			helper.Excute();
 
@@ -33,13 +33,17 @@ namespace Warrentech.Velo.VeloView
 		public void EndCommand(string commandName)
 		{
 			int index = commandName.IndexOf("V3");
+			Document doc = AcadApp.DocumentManager.MdiActiveDocument;
+			Editor ed = doc.Editor;
+			ed.WriteMessage(string.Format("\nV3 {0|\n"),commandName);
+
 			if (index >= 0) {
 				index += 2;
 				string docPath = commandName.Substring(index);
 				if (!File.Exists(docPath)) {
 					return;
 				}
-				AutoApp.Document doc = AutoApp.Application.DocumentManager.MdiActiveDocument;
+				doc = AutoApp.Application.DocumentManager.MdiActiveDocument;
 				if (IsFileOpened(docPath)) {
 					doc = SetDocumentActive(docPath);
 				} else {
@@ -89,7 +93,7 @@ namespace Warrentech.Velo.VeloView
 
 		public void Terminate()
 		{
-			
+			change.RemoveEvents();
 		}
 
 		#endregion

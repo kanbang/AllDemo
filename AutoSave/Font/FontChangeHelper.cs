@@ -65,9 +65,7 @@ namespace Warrentech.Velo.VeloView
 				GetWindowText(hwnd, sb, sb.Capacity);
 				string cadString = sb.ToString();
 				if (cadString.Length > 7 && cadString.Substring(0, 7) == "指定字体给样式") {//找到字体窗口
-					MessageBox.Show("找到");
-					//SendMessage(hwnd, WM_CLOSE, 0, 0);
-					_globalUserName = hwnd;
+					SendMessage(hwnd, WM_CLOSE, 0, 0);
 					return false;
 				}
 			}

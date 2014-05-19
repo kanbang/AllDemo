@@ -17,9 +17,12 @@ namespace Warrentech.Velo.VeloView
 
 		void OnDocumentCreateStartedHandler (object sender, DocumentCollectionEventArgs e)
 		{
+			Editor ed = Application.DocumentManager.MdiActiveDocument.Editor;
+
+			ed.WriteMessage("OnDocumentCreateStartedHandler");
+
 			try {
 				if (Application.DocumentManager.MdiActiveDocument != null) {
-					Editor ed = Application.DocumentManager.MdiActiveDocument.Editor;
 					ed.WriteMessage("开始自动替换字体");
 				}
 				_thread = new Thread(new ThreadStart(_fontChangeHelper.Reportfont));

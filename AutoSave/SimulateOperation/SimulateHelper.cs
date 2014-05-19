@@ -31,5 +31,6 @@ namespace Warrentech.Velo.VeloView
 		{
 			timer.Start();
 		}
+
 	}
 }
