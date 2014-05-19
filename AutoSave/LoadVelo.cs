@@ -25,7 +25,6 @@ namespace Warrentech.Velo.VeloView
 			change.AddEvents();
 			SimulateHelper helper = new SimulateHelper();
 			helper.Excute();
-
 			AcadApplication comApp = AutoApp.Application.AcadApplication as AcadApplication;
 			comApp.EndCommand += new _DAcadApplicationEvents_EndCommandEventHandler(EndCommand);
 		}
