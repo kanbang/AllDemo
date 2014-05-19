@@ -76,10 +76,6 @@ namespace Warrentech.Velo.VeloView
 		{
 			Console.WriteLine(string.Format("寻找{0}的句柄", caption));
 			IntPtr tb = FindWindowEx(mwh, IntPtr.Zero, null, caption);
-			if(tb == IntPtr.Zero)
-				throw new Exception(string.Format("找不到{0}", caption));
-			else
-				Console.WriteLine("Setting的句柄是:" + tb);
 			return tb;
 		}
 
