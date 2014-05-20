@@ -7,7 +7,6 @@ using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.Customization;
 using Autodesk.AutoCAD.Interop;
 using Autodesk.AutoCAD.Runtime;
-using Warrentech.Velo.EasyInstall;
 using AutoApp = Autodesk.AutoCAD.ApplicationServices;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 using Autodesk.AutoCAD.EditorInput;
@@ -18,11 +17,8 @@ namespace Warrentech.Velo.VeloView
 {
 	public class LoadVelo : IExtensionApplication
 	{
-		FontChanger change = new FontChanger();
-
 		public void Initialize()
 		{
-			change.AddEvents();
 			SimulateHelper helper = new SimulateHelper();
 			helper.Excute();
 			AcadApplication comApp = AutoApp.Application.AcadApplication as AcadApplication;
@@ -31,25 +27,15 @@ namespace Warrentech.Velo.VeloView
 
 		public void EndCommand(string commandName)
 		{
-			int index = commandName.IndexOf("V3");
-			Document doc = AcadApp.DocumentManager.MdiActiveDocument;
-			Editor ed = doc.Editor;
-			ed.WriteMessage(string.Format("\nV3 {0|\n"),commandName);
-
-			if (index >= 0) {
-				index += 2;
-				string docPath = commandName.Substring(index);
-				if (!File.Exists(docPath)) {
-					return;
+			if (commandName.ToLower().Contains("commandline") || commandName.ToLower().Contains("ribbon")
+				|| commandName.ToLower().Contains("jsexec")) {
+				var doc = AutoApp.Application.DocumentManager.MdiActiveDocument;
+				if (doc != null) {
+					doc.Editor.WriteMessage("执行另存");
+					doc.SendStringToExecute("saveas ", false, false, false);
 				}
-				doc = AutoApp.Application.DocumentManager.MdiActiveDocument;
-				if (IsFileOpened(docPath)) {
-					doc = SetDocumentActive(docPath);
-				} else {
-					doc = AcadApp.DocumentManager.Open(docPath, false);
-
-				}
-				doc.SendStringToExecute("saveas ", false, false, false);
+				AcadApplication comApp = AutoApp.Application.AcadApplication as AcadApplication;
+				comApp.EndCommand -= new _DAcadApplicationEvents_EndCommandEventHandler(EndCommand);
 			}
 
 		}
@@ -92,7 +78,7 @@ namespace Warrentech.Velo.VeloView
 
 		public void Terminate()
 		{
-			change.RemoveEvents();
+		
 		}
 
 		#endregion

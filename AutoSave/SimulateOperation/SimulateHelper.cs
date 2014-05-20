@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Timers;
-using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
-using Autodesk.AutoCAD.ApplicationServices;
 using System.Diagnostics;
+using System.Timers;
+using Autodesk.AutoCAD.ApplicationServices;
+using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
+using System.IO;
+using System.Reflection;
 
 namespace Warrentech.Velo.VeloView
 {
 	public class SimulateHelper
 	{
 		Timer timer = new Timer(100);
-		FontChangeHelper helper = new FontChangeHelper();
 		int number = 0;
 		public SimulateHelper()
 		{
@@ -27,17 +26,26 @@ namespace Warrentech.Velo.VeloView
 				IntPtr btnSetPtr = WinApiHelper.GetControlInptr(windowPtr, "保存(&S)");
 				if (btnSetPtr == IntPtr.Zero) {
 					btnSetPtr = WinApiHelper.GetControlInptr(windowPtr, "是(&Y)");
-				} 
+				}
 				if (btnSetPtr != IntPtr.Zero) {
 					WinApiHelper.PostMessage1(btnSetPtr);
 				}
 			} else if (number > 0) {
-				string exeName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-				string[] exeArray = exeName.Split('\\');
-
-				RunCmd("taskkill /im " + exeArray[exeArray.Length - 1] + " /f ");
+				string name = "1.txt";
+				string path = Assembly.GetExecutingAssembly().Location;
+				string fileName = Path.Combine(Path.GetDirectoryName(path), name);
+				File.Create(fileName).Close();
+				KillProcess(Process.GetCurrentProcess());
 			}
 		}
+
+		private static void KillProcess(Process process)
+		{
+			string exeName = process.MainModule.FileName;
+			string[] exeArray = exeName.Split('\\');
+			RunCmd("taskkill /im " + exeArray[exeArray.Length - 1] + " /f ");
+		}
+
 		/// <summary>
 		/// 运行DOS命令
 		/// DOS关闭进程命令(ntsd -c q -p PID )PID为进程的ID
