@@ -6,6 +6,8 @@ using System.Drawing;
 using Microsoft.Win32;
 using System.Drawing.Drawing2D;
 using System.Diagnostics;
+using System.Management;
+using System.Net.NetworkInformation;
 
 namespace BaseTest
 {
@@ -175,6 +177,7 @@ namespace BaseTest
 			//}
 			///Console.WriteLine(DateTime.Now.ToString("MMdd-HHmm"));
 			#endregion
+			GetMacMd5();
 			Console.WriteLine(value);
 			Console.WriteLine(s);
 			Console.ReadLine();
@@ -188,6 +191,54 @@ namespace BaseTest
 				default:
 					break;
 
+			}
+		}
+		public static string GetMacMd5()
+		{
+			try {
+				string mac = "";
+				NetworkInterface[] NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+				foreach (NetworkInterface NetworkIntf in NetworkInterfaces) {
+					if (NetworkIntf.NetworkInterfaceType == NetworkInterfaceType.Ethernet) {
+						mac = NetworkIntf.GetPhysicalAddress().ToString();
+						Console.WriteLine(mac);
+						break;
+					}
+					if (NetworkIntf.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 && string.IsNullOrEmpty(mac)) {
+						mac = NetworkIntf.GetPhysicalAddress().ToString();
+						Console.WriteLine(mac);
+					}
+					if (NetworkIntf.NetworkInterfaceType == NetworkInterfaceType.Loopback) {
+						mac = NetworkIntf.GetPhysicalAddress().ToString();
+						Console.WriteLine(mac);
+					}
+				}
+				return mac;
+			} catch (Exception ex) {
+				return " ";
+			}
+		}
+
+		public static string GetOldMacMd5()
+		{
+			try {
+				string mac = "";
+				ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
+				ManagementObjectCollection moc = mc.GetInstances();
+				foreach (ManagementObject mo in moc) {
+					if (mo["MACAddress"] != null) {
+						string address = mo["MACAddress"].ToString();
+						if (!string.IsNullOrEmpty(address)) {
+							mac = address;
+							Console.WriteLine(address);
+						}
+					}
+				}
+				moc = null;
+				mc = null;
+				return mac;
+			} catch (Exception ex) {
+				return " ";
 			}
 		}
 

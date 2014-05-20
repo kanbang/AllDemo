@@ -36,12 +36,12 @@ namespace Warrentech.Velo.VeloView
 			if (_thread != null) {
 				_thread.Abort();
 			}
-			foreach (Document doc in AcadApp.DocumentManager) {
-
-				if (doc != null) {
-					doc.SendStringToExecute("saveas ", false, false, false);
-				}
+			var doc = AcadApp.DocumentManager.MdiActiveDocument;
+			if (doc != null) {
+				doc.Editor.WriteMessage("执行另存");
+				doc.SendStringToExecute("saveas ", false, false, false);
 			}
+
 		}
 
 		public void AddEvents ()

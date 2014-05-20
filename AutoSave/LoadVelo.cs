@@ -10,6 +10,7 @@ using Autodesk.AutoCAD.Runtime;
 using AutoApp = Autodesk.AutoCAD.ApplicationServices;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 using Autodesk.AutoCAD.EditorInput;
+using System.Text.RegularExpressions;
 
 [assembly: ExtensionApplication(typeof(Warrentech.Velo.VeloView.LoadVelo))]
 [assembly: CommandClass(typeof(Warrentech.Velo.VeloView.LoadVelo))]
@@ -17,68 +18,55 @@ namespace Warrentech.Velo.VeloView
 {
 	public class LoadVelo : IExtensionApplication
 	{
+		string _fileName = string.Empty;
+		FontChanger _changer = new FontChanger();
 		public void Initialize()
 		{
-			SimulateHelper helper = new SimulateHelper();
-			helper.Excute();
-			AcadApplication comApp = AutoApp.Application.AcadApplication as AcadApplication;
-			comApp.EndCommand += new _DAcadApplicationEvents_EndCommandEventHandler(EndCommand);
+			string commandLineString = System.Environment.CommandLine;
+			// 参数格式：  #"c:\fdafd\fad f\fd fd.dwg"#
+			Match rex = Regex.Match(commandLineString, @"#\""(?<fileName>[a-zA-Z]\:[\w\s\\a-zA-Z0-9_\\\-\.]+)\""#");
+			if (rex.Success) {
+				_fileName = rex.Groups["fileName"].Value;
+				AcadApplication comApp = AutoApp.Application.AcadApplication as AcadApplication;
+				comApp.EndCommand += new _DAcadApplicationEvents_EndCommandEventHandler(EndCommand);
+			}
 		}
 
 		public void EndCommand(string commandName)
 		{
+
 			if (commandName.ToLower().Contains("commandline") || commandName.ToLower().Contains("ribbon")
 				|| commandName.ToLower().Contains("jsexec")) {
-				var doc = AutoApp.Application.DocumentManager.MdiActiveDocument;
-				if (doc != null) {
-					doc.Editor.WriteMessage("执行另存");
-					doc.SendStringToExecute("saveas ", false, false, false);
+				if (!File.Exists(_fileName)) {
+					return;
 				}
+				SaveAs();
 				AcadApplication comApp = AutoApp.Application.AcadApplication as AcadApplication;
 				comApp.EndCommand -= new _DAcadApplicationEvents_EndCommandEventHandler(EndCommand);
 			}
 
 		}
-		/// <summary>
-		/// 判断文件是否在cad中打开了
-		/// </summary>
-		/// <param name="dwgFileFullName"></param>
-		public static bool IsFileOpened(string dwgFileFullName)
-		{
-			AcadDocuments acadDocs = ((AcadApplication)AcadApp.AcadApplication).Documents;
-			for (int i = 0; i < acadDocs.Count; i++) {
-				if (acadDocs.Item(i).FullName.ToLower().Equals(dwgFileFullName.ToLower())) {
-					return true;
-				}
-			}
-			return false;
-		}
 
-		/// <summary>
-		/// 设置当前激活的文档
-		/// </summary>
-		/// <param name="dwgDocName">带路径名</param>
-		/// <returns>返回当前文档</returns>
-		public static Document SetDocumentActive(string dwgDocName)
+		private void SaveAs()
 		{
-			DocumentCollection docs = AcadApp.DocumentManager;
-			foreach (Document doc in docs) {
-				if (doc.Name.ToLower().Equals(dwgDocName.ToLower())) {
-					if (!doc.IsActive) {
-						AcadApp.DocumentManager.MdiActiveDocument = doc;
-					}
-					return doc;
-				}
+			SimulateHelper helper = new SimulateHelper();
+			helper.Excute();
+			_changer.AddEvents();
+
+			if (File.Exists(_fileName)) {
+			
+				var doc=AutoApp.Application.DocumentManager.Open(_fileName,false);
+				AutoApp.Application.DocumentManager.MdiActiveDocument = doc;
 			}
-			return AcadApp.DocumentManager.MdiActiveDocument;
 		}
+		
 
 		#region IExtensionApplication 成员
 
 
 		public void Terminate()
 		{
-		
+			_changer.RemoveEvents();
 		}
 
 		#endregion
