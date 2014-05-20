@@ -57,6 +57,8 @@ namespace Warrentech.Velo.VeloView
 			
 				var doc=AutoApp.Application.DocumentManager.Open(_fileName,false);
 				AutoApp.Application.DocumentManager.MdiActiveDocument = doc;
+				doc.Editor.WriteMessage("执行另存");
+				doc.SendStringToExecute("saveas ", false, false, false);
 			}
 		}
 		
