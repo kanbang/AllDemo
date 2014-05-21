@@ -64,9 +64,10 @@ namespace Warrentech.Velo.VeloView
 
 				GetWindowText(hwnd, sb, sb.Capacity);
 				string cadString = sb.ToString();
-				if (cadString.Length > 7 && cadString.Substring(0, 7) == "指定字体给样式") {//找到字体窗口
+				if (cadString.ToLower().Contains("指定字体给样式")||
+					cadString.ToLower().Contains("代理信息")||
+					cadString.ToLower().Contains("注释比例")) {
 					SendMessage(hwnd, WM_CLOSE, 0, 0);
-					return false;
 				}
 			}
 			return true;
@@ -144,7 +145,7 @@ namespace Warrentech.Velo.VeloView
 				EnumWindows(this.Report, 0);//这里会得到下面的kaka的值
 				int kaka;
 				kaka = _globalUserName;//替换字体的对话框的句柄
-				EnumChildWindows(kaka, this.Reportfa, 0);
+				//EnumChildWindows(kaka, this.Reportfa, 0);
 			}
 		}
 

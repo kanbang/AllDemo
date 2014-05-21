@@ -18,13 +18,14 @@ namespace Warrentech.Velo.VeloView
 {
 	public class LoadVelo : IExtensionApplication
 	{
-		string _fileName = string.Empty;
-		FontChanger _changer = new FontChanger();
+		static string _fileName = string.Empty;
+		static FontChanger _changer = new FontChanger();
+		static Document _doc;
 		public void Initialize()
 		{
 			string commandLineString = System.Environment.CommandLine;
 			// 参数格式：  #"c:\fdafd\fad f\fd fd.dwg"#
-			Match rex = Regex.Match(commandLineString, @"#\""(?<fileName>[a-zA-Z]\:[\w\s\\a-zA-Z0-9_\\\-\.]+)\""#");
+			Match rex = Regex.Match(commandLineString, @"#\""(?<fileName>[a-zA-Z]\:[\w\s\\a-zA-Z0-9_\\\-\.\~]+)\""#");
 			if (rex.Success) {
 				_fileName = rex.Groups["fileName"].Value;
 				AcadApplication comApp = AutoApp.Application.AcadApplication as AcadApplication;
@@ -35,33 +36,34 @@ namespace Warrentech.Velo.VeloView
 		public void EndCommand(string commandName)
 		{
 
-			if (commandName.ToLower().Contains("commandline") || commandName.ToLower().Contains("ribbon")
-				|| commandName.ToLower().Contains("jsexec")) {
-				if (!File.Exists(_fileName)) {
-					return;
+			if (commandName.ToLower().Contains("ribbon")) {
+				if (File.Exists(_fileName)) {
+					_doc = AutoApp.Application.DocumentManager.Open(_fileName, false);
+					AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("CustomSaveAs ", true, false, true);
 				}
-				SaveAs();
-				AcadApplication comApp = AutoApp.Application.AcadApplication as AcadApplication;
-				comApp.EndCommand -= new _DAcadApplicationEvents_EndCommandEventHandler(EndCommand);
+			} else if (commandName.ToLower().Contains("保存成功")) {
+				SimulateHelper.KillProcess(Process.GetCurrentProcess());
 			}
-
 		}
 
-		private void SaveAs()
+		[CommandMethod("CustomSaveAs", CommandFlags.Session)]
+		public static void CustomSaveAs()
 		{
-			SimulateHelper helper = new SimulateHelper();
-			helper.Excute();
-			_changer.AddEvents();
+			if (_doc != null) {
+				SetActive(_doc);
+				AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("saveas ", true, false, true);
+				SimulateHelper helper = new SimulateHelper();
+				helper.Excute();
+			}
+			//_changer.AddEvents();
+		}
 
-			if (File.Exists(_fileName)) {
-			
-				var doc=AutoApp.Application.DocumentManager.Open(_fileName,false);
-				AutoApp.Application.DocumentManager.MdiActiveDocument = doc;
-				doc.Editor.WriteMessage("执行另存");
-				doc.SendStringToExecute("saveas ", false, false, false);
+		private static void SetActive(Document orgionDoc)
+		{
+			if (AutoApp.Application.DocumentManager.MdiActiveDocument != orgionDoc) {
+				AutoApp.Application.DocumentManager.MdiActiveDocument = orgionDoc;
 			}
 		}
-		
 
 		#region IExtensionApplication 成员
 

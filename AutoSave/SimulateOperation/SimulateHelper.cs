@@ -19,6 +19,8 @@ namespace Warrentech.Velo.VeloView
 
 		void timer_Elapsed(object sender, ElapsedEventArgs e)
 		{
+			WinApiHelper.ClickMouse();
+
 			IntPtr windowPtr = WinApiHelper.FindWindowHandle("图形另存为");
 			Debug.WriteLine(windowPtr.ToString());
 			if (windowPtr != IntPtr.Zero) {
@@ -31,15 +33,15 @@ namespace Warrentech.Velo.VeloView
 					WinApiHelper.PostMessage1(btnSetPtr);
 				}
 			} else if (number > 0) {
-				string name = "1.txt";
-				string path = Assembly.GetExecutingAssembly().Location;
-				string fileName = Path.Combine(Path.GetDirectoryName(path), name);
-				File.Create(fileName).Close();
 				KillProcess(Process.GetCurrentProcess());
+			} else {
+				Debug.WriteLine("尝试设置焦点");
+				WinApiHelper.SetWindowPos(Process.GetCurrentProcess().MainWindowHandle);
+				WinApiHelper.SetF(Process.GetCurrentProcess().MainWindowHandle);
 			}
 		}
 
-		private static void KillProcess(Process process)
+		public static void KillProcess(Process process)
 		{
 			string exeName = process.MainModule.FileName;
 			string[] exeArray = exeName.Split('\\');

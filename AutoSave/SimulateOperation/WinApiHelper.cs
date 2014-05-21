@@ -97,5 +97,15 @@ namespace Warrentech.Velo.VeloView
 			PostMessage(hWnd, WM_LBUTTONDOWM, 0, 0);//按下鼠标左键
 			PostMessage(hWnd, WM_LBUTTONUP, 0, 0);//放下鼠标左键
 		}
+		[DllImport("user32")]
+		private static extern int mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+
+		const int MOUSEEVENTF_LEFTDOWN = 0x0002;// 模拟鼠标左键按下 
+		const int MOUSEEVENTF_LEFTUP = 0x0004; //模拟鼠标左键抬起 
+		public static void ClickMouse()
+		{
+			mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+		}
+
 	}
 }
