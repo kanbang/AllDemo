@@ -14,13 +14,8 @@ namespace Warrentech.Velo.VeloView
 	public class FontChanger
 	{
 		DocumentCollection _creatNew = AcadApp.DocumentManager;
-		FontChangeHelper _fontChangeHelper = new FontChangeHelper(null);
+		FontChangeHelper _fontChangeHelper = new FontChangeHelper();
 		Thread _thread;
-
-		public FontChanger(string closeWindowName)
-		{
-			_fontChangeHelper = new FontChangeHelper(closeWindowName);
-		}
 
 		void OnDocumentCreateStartedHandler (object sender, DocumentCollectionEventArgs e)
 		{

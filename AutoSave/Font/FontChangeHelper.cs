@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.IO;
+using System.Reflection;
+using System.Xml;
 
 namespace Warrentech.Velo.VeloView
 {
@@ -55,9 +58,9 @@ namespace Warrentech.Velo.VeloView
 		int _publicTxtIndexN;
 		private string[] _closeWindowName;
 
-		public FontChangeHelper(string closeWindowName)
+		public FontChangeHelper()
 		{
-			_closeWindowName = closeWindowName.Split(';');
+			_closeWindowName = GetAppConfigValue("CloseWindowNameContent").Split(';');
 		}
 		#endregion
 
@@ -156,6 +159,47 @@ namespace Warrentech.Velo.VeloView
 				//EnumChildWindows(kaka, this.Reportfa, 0);
 			}
 		}
+		#region GetAppConfigValue
+		internal static string GetAppConfigValue(string appKey)
+		{
+			XmlDocument xDoc = new XmlDocument();
+			try {
+				xDoc.Load(GetAppConfigFilePath());
+				XmlNode xNode;
+				XmlElement xElem;
+				xNode = xDoc.SelectSingleNode("//appSettings");
+				xElem = (XmlElement)xNode.SelectSingleNode("//add[@key='" + appKey + "']");
+				if (xElem != null)
+					return xElem.GetAttribute("value");
+				else
+					return "";
+			} catch {
+				return "";
+			}
+		}
+		private static string GetAppConfigFilePath()
+		{
+			string directoryName = GetDllDirPath();
+			string logFilePath = Path.Combine(directoryName, "app.config");
+			if (!Directory.Exists(directoryName)) {
+				Directory.CreateDirectory(directoryName);
+			}
+			if (!File.Exists(logFilePath)) {
+				File.Create(logFilePath).Close();
+			}
+			return logFilePath;
+		}
+		internal static string GetDllDirPath()
+		{
+			string dllPath = "";
+			try {
+				var executingAssembly = Assembly.GetExecutingAssembly();//获取当前Dll的相关信息。
+				return Path.GetDirectoryName(executingAssembly.Location);
+			} catch {
+			}
+			return dllPath;
+		}
+		#endregion
 
 	}
 }
