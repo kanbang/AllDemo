@@ -106,6 +106,12 @@ namespace Warrentech.Velo.VeloView
 		{
 			mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
 		}
+		[DllImport("user32.dll")]
+		public static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+		public static void SendKey(int value)
+		{
+			keybd_event((byte)value, 0, 0, 0);
+		}
 
 	}
 }

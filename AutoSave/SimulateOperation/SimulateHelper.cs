@@ -1,43 +1,56 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Timers;
 using Autodesk.AutoCAD.ApplicationServices;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 
 namespace Warrentech.Velo.VeloView
 {
 	public class SimulateHelper
 	{
-		Timer timer = new Timer(100);
+		Timer timer;
 		int number = 0;
-		public SimulateHelper()
+
+		void timer_Elapsed(object sender)
 		{
-			timer.Elapsed += timer_Elapsed;
+			TSaveAs();
+			Thread.Sleep(10);
+			IntPtr windowPtr = WinApiHelper.FindWindowHandle("确认另存为");
+			if (windowPtr != IntPtr.Zero) {
+				timer.Dispose();
+				while (true) {
+					if (WinApiHelper.FindWindowHandle("确认另存为") == IntPtr.Zero) {
+						break;
+					}
+					IntPtr btnSetPtr = WinApiHelper.GetControlInptr(windowPtr, "是(&Y)");
+					if (btnSetPtr != IntPtr.Zero) {
+						WinApiHelper.PostMessage1(btnSetPtr);
+						Thread.Sleep(10);
+						timer = new Timer(timer_Elapsed, null, 0, 100);
+						break;
+					} else {
+						WinApiHelper.SendKey((int)System.Windows.Forms.Keys.Y);
+						WinApiHelper.SetF(windowPtr);
+					}
+				}
+			}
 		}
 
-		void timer_Elapsed(object sender, ElapsedEventArgs e)
+		private void TSaveAs()
 		{
-			WinApiHelper.ClickMouse();
-
-			IntPtr windowPtr = WinApiHelper.FindWindowHandle("图形另存为");
-			Debug.WriteLine(windowPtr.ToString());
+			IntPtr windowPtr = WinApiHelper.FindWindowHandle("图形导出");
 			if (windowPtr != IntPtr.Zero) {
-				number++;
 				IntPtr btnSetPtr = WinApiHelper.GetControlInptr(windowPtr, "保存(&S)");
-				if (btnSetPtr == IntPtr.Zero) {
-					btnSetPtr = WinApiHelper.GetControlInptr(windowPtr, "是(&Y)");
-				}
 				if (btnSetPtr != IntPtr.Zero) {
 					WinApiHelper.PostMessage1(btnSetPtr);
 				}
+				number++;
 			} else if (number > 0) {
 				KillProcess(Process.GetCurrentProcess());
 			} else {
-				Debug.WriteLine("尝试设置焦点");
-				WinApiHelper.SetWindowPos(Process.GetCurrentProcess().MainWindowHandle);
-				WinApiHelper.SetF(Process.GetCurrentProcess().MainWindowHandle);
+				WinApiHelper.ClickMouse();
 			}
 		}
 
@@ -79,7 +92,7 @@ namespace Warrentech.Velo.VeloView
 		}
 		public void Excute()
 		{
-			timer.Start();
+			timer = new Timer(timer_Elapsed, null, 0, 100);
 		}
 
 	}

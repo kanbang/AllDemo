@@ -5,12 +5,12 @@ using System.Threading;
 using System.Windows.Forms;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.Customization;
-using Autodesk.AutoCAD.Interop;
 using Autodesk.AutoCAD.Runtime;
 using AutoApp = Autodesk.AutoCAD.ApplicationServices;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 using Autodesk.AutoCAD.EditorInput;
 using System.Text.RegularExpressions;
+using Autodesk.AutoCAD.Interop;
 
 [assembly: ExtensionApplication(typeof(Warrentech.Velo.VeloView.LoadVelo))]
 [assembly: CommandClass(typeof(Warrentech.Velo.VeloView.LoadVelo))]
@@ -19,14 +19,18 @@ namespace Warrentech.Velo.VeloView
 	public class LoadVelo : IExtensionApplication
 	{
 		static string _fileName = string.Empty;
-		static FontChanger _changer=new FontChanger();
+		static FontChanger _changer = new FontChanger();
 		static Document _doc;
+		System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
 		public void Initialize()
 		{
 			string commandLineString = System.Environment.CommandLine;
 			// 参数格式：  #"c:\fdafd\fad f\fd fd.dwg"#
 			Match rex = Regex.Match(commandLineString, @"#\""(?<fileName>[a-zA-Z]\:[\w\s\\a-zA-Z0-9_\\\-\.\~]+)\""#");
 			if (rex.Success) {
+				_timer = new System.Windows.Forms.Timer();
+				_timer.Tick += new EventHandler(_timer_Tick);
+				_timer.Start();
 				_changer.StartCloseWindow();
 				_fileName = rex.Groups["fileName"].Value;
 				AcadApplication comApp = AutoApp.Application.AcadApplication as AcadApplication;
@@ -34,15 +38,20 @@ namespace Warrentech.Velo.VeloView
 			}
 		}
 
+		void _timer_Tick(object sender, EventArgs e)
+		{
+			if (File.Exists(_fileName) && AutoApp.Application.DocumentManager.MdiActiveDocument != null) {
+				_timer.Stop();
+				_doc = AutoApp.Application.DocumentManager.Open(_fileName, false);
+				AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("CustomSaveAs ", true, false, true);
+			}
+		}
+
 		public void EndCommand(string commandName)
 		{
-
-			if (commandName.ToLower().Contains("ribbon")) {
-				if (File.Exists(_fileName)) {
-					_doc = AutoApp.Application.DocumentManager.Open(_fileName, false);
-					AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("CustomSaveAs ", true, false, true);
-				}
-			} else if (commandName.ToLower().Contains("保存成功")) {
+			Debug.WriteLine(commandName);
+			if (commandName.ToLower().Contains("commandline")) {
+			} else if (commandName.ToLower().Contains("成功地生成天正建筑")) {
 				SimulateHelper.KillProcess(Process.GetCurrentProcess());
 			}
 		}
@@ -52,7 +61,7 @@ namespace Warrentech.Velo.VeloView
 		{
 			if (_doc != null) {
 				SetActive(_doc);
-				AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("saveas ", true, false, true);
+				AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("tsaveas ", true, false, true);
 				SimulateHelper helper = new SimulateHelper();
 				helper.Excute();
 			}
