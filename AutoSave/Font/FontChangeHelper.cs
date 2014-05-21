@@ -9,31 +9,31 @@ namespace Warrentech.Velo.VeloView
 {
 	public class FontChangeHelper
 	{
-		public delegate bool CallBack (int hwnd, int y);
+		public delegate bool CallBack(int hwnd, int y);
 		#region API声明
 		[DllImport("user32.dll")]
-		public static extern int EnumWindows (CallBack x, int y);
+		public static extern int EnumWindows(CallBack x, int y);
 
 		[DllImport("user32.dll", EntryPoint = "EnumChildWindows")]//枚举子窗体
-		public static extern bool EnumChildWindows (int hwndParent, CallBack EnumFunc, int lParam);
+		public static extern bool EnumChildWindows(int hwndParent, CallBack EnumFunc, int lParam);
 
 		[DllImport("User32.dll", EntryPoint = "FindWindow")]//找指定窗体
-		private static extern int FindWindow (string lpClassName, string lpWindowName);
+		private static extern int FindWindow(string lpClassName, string lpWindowName);
 
 		[DllImport("user32")]
-		public static extern int GetWindowText (int hwnd, StringBuilder lptrString, int nMaxCount);
+		public static extern int GetWindowText(int hwnd, StringBuilder lptrString, int nMaxCount);
 
 		[DllImport("user32")]
-		public static extern int IsWindowVisible (int hwnd);
+		public static extern int IsWindowVisible(int hwnd);
 		[DllImport("User32.Dll")]
-		public static extern void GetClassName (int hwnd, StringBuilder s, int nMaxCount);
+		public static extern void GetClassName(int hwnd, StringBuilder s, int nMaxCount);
 
 
 		[DllImport("user32.dll", EntryPoint = "SendMessage", CharSet = CharSet.Ansi)]
-		public static extern int SendMessage (int hwnd, int msg, int wParam, int lParam);
+		public static extern int SendMessage(int hwnd, int msg, int wParam, int lParam);
 
 		[DllImport("User32.dll", EntryPoint = "SendMessage", CharSet = CharSet.Ansi)]
-		public static extern int SendMessage (int hWnd, int uMsg, int wParam, StringBuilder lParam);
+		public static extern int SendMessage(int hWnd, int uMsg, int wParam, StringBuilder lParam);
 
 		const int LB_SETTOPINDEX = 0x0197;
 		const int LB_SETCURSEL = 0x0186;
@@ -53,21 +53,29 @@ namespace Warrentech.Velo.VeloView
 		int _globalUserName;
 		int _sumbitButtonHwnd;
 		int _publicTxtIndexN;
+		private string[] _closeWindowName;
+
+		public FontChangeHelper(string closeWindowName)
+		{
+			_closeWindowName = closeWindowName.Split(';');
+		}
 		#endregion
 
 
 		#region 查找AutoCAD替换字体的窗口，返回得到这个窗口的句柄
-		public bool Report (int hwnd, int lParam)
+		public bool Report(int hwnd, int lParam)
 		{
 			if (IsWindowVisible(hwnd) == 1) {
 				StringBuilder sb = new StringBuilder(512);
 
 				GetWindowText(hwnd, sb, sb.Capacity);
 				string cadString = sb.ToString();
-				if (cadString.ToLower().Contains("指定字体给样式")||
-					cadString.ToLower().Contains("代理信息")||
-					cadString.ToLower().Contains("注释比例")) {
-					SendMessage(hwnd, WM_CLOSE, 0, 0);
+				foreach (var item in _closeWindowName) {
+					if (item.Length > 0) {
+						if (cadString.ToLower().Contains(item)) {
+							SendMessage(hwnd, WM_CLOSE, 0, 0);
+						}
+					}
 				}
 			}
 			return true;
@@ -75,7 +83,7 @@ namespace Warrentech.Velo.VeloView
 		#endregion
 
 		#region 在这个替换字体的主窗口内查找子窗口
-		public bool Reportfa (int hwnd, int lParam)//循环查找替换listbox
+		public bool Reportfa(int hwnd, int lParam)//循环查找替换listbox
 		{
 			string lpszParentClass = "ListBox"; //整个窗口的类名
 			StringBuilder sbClassName = new StringBuilder(255);
@@ -117,7 +125,7 @@ namespace Warrentech.Velo.VeloView
 		#endregion
 
 		#region 得到hztxt.shx的位置,设置PublicTxtIndexN
-		public void GetfontIndex (int hwnd)
+		public void GetfontIndex(int hwnd)
 		{
 			//先查找一共有多少项
 			int ListCount;
@@ -138,7 +146,7 @@ namespace Warrentech.Velo.VeloView
 		#endregion
 
 		//循环查找替换
-		public void Reportfont ()
+		public void Reportfont()
 		{
 			int Nub = 1;
 			while (Nub > 0) {
