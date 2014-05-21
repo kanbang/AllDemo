@@ -22,17 +22,15 @@ namespace Warrentech.Velo.VeloView
 				timer.Dispose();
 				while (true) {
 					if (WinApiHelper.FindWindowHandle("确认另存为") == IntPtr.Zero) {
-						break;
-					}
-					IntPtr btnSetPtr = WinApiHelper.GetControlInptr(windowPtr, "是(&Y)");
-					if (btnSetPtr != IntPtr.Zero) {
-						WinApiHelper.PostMessage1(btnSetPtr);
-						Thread.Sleep(10);
-						timer = new Timer(timer_Elapsed, null, 0, 100);
+						Excute();
 						break;
 					} else {
-						WinApiHelper.SendKey((int)System.Windows.Forms.Keys.Y);
-						WinApiHelper.SetF(windowPtr);
+						IntPtr btnSetPtr = WinApiHelper.GetControlInptr(windowPtr, "是(&Y)");
+						if (btnSetPtr != IntPtr.Zero) {
+							WinApiHelper.PostMessage1(btnSetPtr);
+						} else {
+							WinApiHelper.SendKey((int)System.Windows.Forms.Keys.Y);
+						}
 					}
 				}
 			}
