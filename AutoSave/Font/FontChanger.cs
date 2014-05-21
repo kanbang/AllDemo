@@ -24,7 +24,9 @@ namespace Warrentech.Velo.VeloView
 			ed.WriteMessage("OnDocumentCreateStartedHandler");
 
 			try {
-
+				if (_thread != null) {
+					_thread.Abort();
+				}
 				_thread = new Thread(new ThreadStart(_fontChangeHelper.Reportfont));
 				_thread.Start();
 			} catch {
@@ -39,7 +41,7 @@ namespace Warrentech.Velo.VeloView
 
 		}
 
-		public void AddEvents ()
+		private void AddEvents ()
 		{
 			//把事件处理函数与相应的事件进行连接
 			_creatNew.DocumentCreateStarted += OnDocumentCreateStartedHandler;
@@ -56,6 +58,18 @@ namespace Warrentech.Velo.VeloView
 			//断开所有的事件处理函数
 			_creatNew.DocumentCreateStarted -= OnDocumentCreateStartedHandler;
 			_creatNew.DocumentCreated -= DocumentCreatedHandler;
+		}
+		public void StartCloseWindow()
+		{
+			AddEvents();
+			try {
+				if (_thread != null) {
+					_thread.Abort();
+				}
+				_thread = new Thread(new ThreadStart(_fontChangeHelper.Reportfont));
+				_thread.Start();
+			} catch {
+			}
 		}
 	}
 

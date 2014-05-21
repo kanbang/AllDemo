@@ -27,6 +27,7 @@ namespace Warrentech.Velo.VeloView
 			// 参数格式：  #"c:\fdafd\fad f\fd fd.dwg"#
 			Match rex = Regex.Match(commandLineString, @"#\""(?<fileName>[a-zA-Z]\:[\w\s\\a-zA-Z0-9_\\\-\.\~]+)\""#");
 			if (rex.Success) {
+				_changer.StartCloseWindow();
 				_fileName = rex.Groups["fileName"].Value;
 				AcadApplication comApp = AutoApp.Application.AcadApplication as AcadApplication;
 				comApp.EndCommand += new _DAcadApplicationEvents_EndCommandEventHandler(EndCommand);
@@ -55,7 +56,6 @@ namespace Warrentech.Velo.VeloView
 				SimulateHelper helper = new SimulateHelper();
 				helper.Excute();
 			}
-			//_changer.AddEvents();
 		}
 
 		private static void SetActive(Document orgionDoc)
