@@ -46,7 +46,10 @@ namespace Warrentech.Velo.VeloView
 				}
 				number++;
 			} else if (number > 0) {
-				KillProcess(Process.GetCurrentProcess());
+				number++;
+				if (number >= 3000) {//5分钟还没关闭
+					KillProcess(Process.GetCurrentProcess());
+				}
 			} else {
 				WinApiHelper.ClickMouse();
 			}

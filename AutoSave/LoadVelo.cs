@@ -51,8 +51,8 @@ namespace Warrentech.Velo.VeloView
 		{
 			Debug.WriteLine(commandName);
 			if (commandName.ToLower().Contains("commandline")) {
-			} else if (commandName.ToLower().Contains("成功地生成天正建筑")) {
-				SimulateHelper.KillProcess(Process.GetCurrentProcess());
+			} else if (commandName.ToLower().Contains("成功地生成")) {
+				AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("_quit ", true, false, true);
 			}
 		}
 
@@ -64,6 +64,7 @@ namespace Warrentech.Velo.VeloView
 				AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("tsaveas ", true, false, true);
 				SimulateHelper helper = new SimulateHelper();
 				helper.Excute();
+				AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("_quit ", true, false, true);
 			}
 		}
 
