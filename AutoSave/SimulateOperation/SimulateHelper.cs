@@ -34,6 +34,22 @@ namespace Warrentech.Velo.VeloView
 					}
 				}
 			}
+			windowPtr = WinApiHelper.FindWindowHandle("AutoCAD");
+			if (windowPtr != IntPtr.Zero) {
+				while (true) {
+					if (WinApiHelper.FindWindowHandle("AutoCAD") == IntPtr.Zero) {
+						Excute();
+						break;
+					} else {
+						IntPtr btnSetPtr = WinApiHelper.GetControlInptr(windowPtr, "是(&Y)");
+						if (btnSetPtr != IntPtr.Zero) {
+							WinApiHelper.PostMessage1(btnSetPtr);
+						} else {
+							WinApiHelper.SendKey((int)System.Windows.Forms.Keys.Y);
+						}
+					}
+				}
+			}
 		}
 
 		private void TSaveAs()
