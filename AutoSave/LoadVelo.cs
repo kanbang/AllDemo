@@ -52,10 +52,20 @@ namespace Warrentech.Velo.VeloView
 			Debug.WriteLine(commandName);
 			if (commandName.ToLower().Contains("commandline")) {
 			} else if (commandName.ToLower().Contains("成功地生成")) {
-				AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("_quit ", true, false, true);
+				Quit();
 			}
 		}
 
+		private static void Quit()
+		{
+			AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("_quit ", true, false, true);
+			AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("KillProgress ", true, false, true);
+		}
+		[CommandMethod("KillProgress", CommandFlags.Session)]
+		public static void KillProgress()
+		{
+			SimulateHelper.KillProcess(Process.GetCurrentProcess());
+		}
 		[CommandMethod("CustomSaveAs", CommandFlags.Session)]
 		public static void CustomSaveAs()
 		{
@@ -64,7 +74,7 @@ namespace Warrentech.Velo.VeloView
 				AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("tsaveas ", true, false, true);
 				SimulateHelper helper = new SimulateHelper();
 				helper.Excute();
-				AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("_quit ", true, false, true);
+				Quit();
 			}
 		}
 
