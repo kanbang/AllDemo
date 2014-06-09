@@ -37,6 +37,7 @@ namespace Warrentech.Velo.VeloView
 			windowPtr = WinApiHelper.FindWindowHandle("AutoCAD");
 			if (windowPtr != IntPtr.Zero) {
 				timer.Dispose();
+				int i = 0;
 				while (true) {
 					if (WinApiHelper.FindWindowHandle("AutoCAD") == IntPtr.Zero) {
 						Excute();
@@ -47,6 +48,11 @@ namespace Warrentech.Velo.VeloView
 							WinApiHelper.PostMessage1(btnSetPtr);
 						} else {
 							WinApiHelper.SendKey((int)System.Windows.Forms.Keys.N);
+						}
+						Thread.Sleep(10);
+						i++;
+						if (i >= 100) {
+							break;
 						}
 					}
 				}
