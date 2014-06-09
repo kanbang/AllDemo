@@ -42,11 +42,11 @@ namespace Warrentech.Velo.VeloView
 						Excute();
 						break;
 					} else {
-						IntPtr btnSetPtr = WinApiHelper.GetControlInptr(windowPtr, "是(&Y)");
+						IntPtr btnSetPtr = WinApiHelper.GetControlInptr(windowPtr, "否(&N)");
 						if (btnSetPtr != IntPtr.Zero) {
 							WinApiHelper.PostMessage1(btnSetPtr);
 						} else {
-							WinApiHelper.SendKey((int)System.Windows.Forms.Keys.Y);
+							WinApiHelper.SendKey((int)System.Windows.Forms.Keys.N);
 						}
 					}
 				}

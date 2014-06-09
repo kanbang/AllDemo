@@ -21,7 +21,7 @@ namespace Warrentech.Velo.VeloView
 		static string _fileName = string.Empty;
 		static FontChanger _changer = new FontChanger();
 		static Document _doc;
-		System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
+		static System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
 		public void Initialize()
 		{
 			string commandLineString = System.Environment.CommandLine;
@@ -59,10 +59,18 @@ namespace Warrentech.Velo.VeloView
 		private static void Quit()
 		{
 			AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("_quit ", true, false, true);
+			_timer = new System.Windows.Forms.Timer();
+			_timer.Interval = 1000;
+			_timer.Tick += new EventHandler(KillProcess);
+			_timer.Start();
 			AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("KillProgress ", true, false, true);
 		}
 		[CommandMethod("KillProgress", CommandFlags.Session)]
 		public static void KillProgress()
+		{
+			SimulateHelper.KillProcess(Process.GetCurrentProcess());
+		}
+		static void KillProcess(object sender, EventArgs e)
 		{
 			SimulateHelper.KillProcess(Process.GetCurrentProcess());
 		}
