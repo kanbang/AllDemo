@@ -72,7 +72,9 @@ namespace Warrentech.Velo.VeloView
 		}
 		static void KillProcess(object sender, EventArgs e)
 		{
-			SimulateHelper.KillProcess(Process.GetCurrentProcess());
+			if (AutoApp.Application.DocumentManager.MdiActiveDocument == null) {
+				SimulateHelper.KillProcess(Process.GetCurrentProcess());
+			}
 		}
 		[CommandMethod("CustomSaveAs", CommandFlags.Session)]
 		public static void CustomSaveAs()
