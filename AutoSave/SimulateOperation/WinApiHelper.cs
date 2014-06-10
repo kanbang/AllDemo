@@ -74,7 +74,6 @@ namespace Warrentech.Velo.VeloView
 		static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
 		public static IntPtr GetControlInptr(IntPtr mwh, string caption)
 		{
-			Console.WriteLine(string.Format("寻找{0}的句柄", caption));
 			IntPtr tb = FindWindowEx(mwh, IntPtr.Zero, null, caption);
 			return tb;
 		}
@@ -91,7 +90,6 @@ namespace Warrentech.Velo.VeloView
 		static extern bool PostMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
 		public static void PostMessage1(IntPtr hWnd)
 		{
-			Console.WriteLine("点击按钮!");
 			uint WM_LBUTTONDOWM = 0x0201;
 			uint WM_LBUTTONUP = 0x0202;
 			PostMessage(hWnd, WM_LBUTTONDOWM, 0, 0);//按下鼠标左键

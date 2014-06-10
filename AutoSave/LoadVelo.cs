@@ -59,6 +59,7 @@ namespace Warrentech.Velo.VeloView
 		private static void Quit()
 		{
 			AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("_quit ", true, false, true);
+			Console.WriteLine("1秒后退出");
 			_timer = new System.Windows.Forms.Timer();
 			_timer.Interval = 1000;
 			_timer.Tick += new EventHandler(KillProcess);
