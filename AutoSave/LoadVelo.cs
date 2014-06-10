@@ -59,8 +59,9 @@ namespace Warrentech.Velo.VeloView
 		private static void Quit()
 		{
 			AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("_quit ", true, false, true);
+			Console.WriteLine("5S exit");
 			_timer = new System.Windows.Forms.Timer();
-			_timer.Interval = 1000;
+			_timer.Interval = 10000;
 			_timer.Tick += new EventHandler(KillProcess);
 			_timer.Start();
 			AutoApp.Application.DocumentManager.MdiActiveDocument.SendStringToExecute("KillProgress ", true, false, true);
