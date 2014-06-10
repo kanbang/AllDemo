@@ -108,8 +108,8 @@ namespace Warrentech.Velo.VeloView
 
 			p.Start();   //啟動
 
-			//p.StandardInput.WriteLine(command);       //也可以用這種方式輸入要執行的命令
-			//p.StandardInput.WriteLine("exit");        //不過要記得加上Exit要不然下一行程式執行的時候會當機
+			p.StandardInput.WriteLine(command);       //也可以用這種方式輸入要執行的命令
+			p.StandardInput.WriteLine("exit");        //不過要記得加上Exit要不然下一行程式執行的時候會當機
 
 			return p.StandardOutput.ReadToEnd();        //從輸出流取得命令執行結果
 
