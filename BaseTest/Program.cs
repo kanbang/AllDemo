@@ -8,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.Diagnostics;
 using System.Management;
 using System.Net.NetworkInformation;
+using System.Drawing.Text;
 
 namespace BaseTest
 {
@@ -177,7 +178,33 @@ namespace BaseTest
 			//}
 			///Console.WriteLine(DateTime.Now.ToString("MMdd-HHmm"));
 			#endregion
-			GetMacMd5();
+			//GetMacMd5();
+			StringBuilder builderCN = new StringBuilder();
+			StringBuilder builderEN = new StringBuilder();
+			try {
+				string folderFullName = Path.Combine(Environment.GetEnvironmentVariable("windir"), "fonts");
+				DirectoryInfo folder = new DirectoryInfo(folderFullName);
+				if (folder.Exists == false) {
+					return;
+				}
+				FileInfo[] Files = folder.GetFiles("*.ttf");
+
+				foreach (FileInfo inf in Files) {
+					string name = inf.Name;
+					try {
+						PrivateFontCollection pfc = new PrivateFontCollection();
+						pfc.AddFontFile(inf.FullName);
+						name = pfc.Families[0].Name;
+						builderCN.AppendLine(string.Format("_allCnToEn['{0}']='{1}';", name, inf.Name));
+						builderEN.AppendLine(string.Format("_allEnToCn['{0}']='{1}';", inf.Name, name));
+					} catch (Exception ex) {
+						
+						throw;
+					}
+				}
+			} catch (Exception ex) {
+				Debug.Fail(ex.Message);
+			}
 			Console.WriteLine(value);
 			Console.WriteLine(s);
 			Console.ReadLine();

@@ -18,7 +18,7 @@ namespace RegexTest
 
 		private void textBox2_TextChanged(object sender, EventArgs e)
 		{
-			Regex regex = new Regex(textBox1.Text);
+			Regex regex = new Regex(textBox1.Text,RegexOptions.IgnoreCase);
 			Match match = regex.Match(textBox2.Text);
 			label1.Text = match.Success.ToString();
 			label2.Text = string.Empty;
